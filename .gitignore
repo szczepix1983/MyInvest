@@ -70,4 +70,4 @@ application.conf
 
 .gradle
 
-src/main/resources/external.properties
+*.externals.properties

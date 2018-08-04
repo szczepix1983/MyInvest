@@ -6,7 +6,7 @@ import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 
 @Component
-@PropertySource("classpath:external.properties")
+@PropertySource("classpath:externals.properties")
 public class ExternalConfig {
 
     @Autowired
