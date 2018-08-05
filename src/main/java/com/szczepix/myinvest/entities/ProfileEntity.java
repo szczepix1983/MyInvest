@@ -24,7 +24,7 @@ public class ProfileEntity extends BaseEntity {
     @Override
     public boolean equals(Object obj) {
         ProfileEntity person = (ProfileEntity) obj;
-        return super.equals(obj) && (firstName.equals(person.firstName) && password.equals(person.password));
+        return super.equals(obj) || (getId().equals(person.getId()) && firstName.equals(person.firstName) && password.equals(person.password));
     }
 
     @Override

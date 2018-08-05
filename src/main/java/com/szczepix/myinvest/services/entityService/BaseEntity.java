@@ -11,7 +11,11 @@ public abstract class BaseEntity implements Serializable {
         return this == obj;
     }
 
-    protected String print(Object... arguments){
-        return "["+getClass().getName()+"]=["+arguments+"]";
+    protected String print(Object... arguments) {
+        StringBuilder stringBuilder = new StringBuilder("[" + getClass().getSimpleName() + "]:");
+        for (Object argument : arguments) {
+            stringBuilder.append("[").append(argument.toString()).append("]");
+        }
+        return stringBuilder.toString();
     }
 }

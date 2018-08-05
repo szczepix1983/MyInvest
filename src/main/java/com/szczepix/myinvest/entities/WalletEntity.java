@@ -18,9 +18,15 @@ public class WalletEntity extends BaseEntity {
     private String name;
     private WalletType walletType;
     private Long createdAt;
-    
+
     @Override
     public String toString() {
         return print(id, name);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        WalletEntity wallet = (WalletEntity) obj;
+        return super.equals(obj) || (getId().equals(wallet.getId()) && getName().equals(wallet.getName()));
     }
 }
