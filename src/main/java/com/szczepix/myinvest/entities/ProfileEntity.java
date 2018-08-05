@@ -5,14 +5,15 @@ import lombok.Data;
 
 import javax.persistence.*;
 
+
 @Entity
-@Table(name = "Profiles")
+@Table(name = "profiles")
 @Data
 public class ProfileEntity extends BaseEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    @GeneratedValue
+    private int id;
 
     private String firstName;
     private String lastName;
@@ -24,7 +25,7 @@ public class ProfileEntity extends BaseEntity {
     @Override
     public boolean equals(Object obj) {
         ProfileEntity person = (ProfileEntity) obj;
-        return super.equals(obj) || (getId().equals(person.getId()) && firstName.equals(person.firstName) && password.equals(person.password));
+        return super.equals(obj) || (getId() == person.getId() && firstName.equals(person.firstName) && password.equals(person.password));
     }
 
     @Override

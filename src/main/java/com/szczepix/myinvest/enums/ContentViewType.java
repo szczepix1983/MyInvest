@@ -7,7 +7,9 @@ public enum ContentViewType {
 
     MENU("Menu", "menu.fxml"),
     PROFILE("Profile", "profile.fxml"),
-    CREATE_WALLETS("Profile", "create_wallet.fxml");
+    CREATE_WALLETS("Profile", "create_wallet.fxml"),
+    CREATE_INVESTMENT("Investments", "create_investment.fxml"),
+    CREATE_SAVE("Saves", "create_save.fxml");
 
     String title;
     String path;
