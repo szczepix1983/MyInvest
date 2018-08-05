@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #2D3447;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.szczepix.myinvest.views.content.CreateWalletView">
+   <children>
+      <Button fx:id="createButton" alignment="CENTER" layoutX="14.0" layoutY="72.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="150.0" style="-fx-background-color: #2196f3;" text="Create wallet" textFill="#fcf9f9" />
+      <TextField fx:id="totalText" alignment="CENTER" editable="false" layoutX="66.0" layoutY="23.0" prefHeight="17.0" prefWidth="35.0" style="-fx-background-color: #2196f3; -fx-text-fill: #ffffff;" text="0" />
+      <Text fill="#2196f3" layoutX="236.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Type:" />
+      <Separator layoutX="226.0" layoutY="57.0" opacity="0.5" prefHeight="2.0" prefWidth="150.0" style="-fx-background-color: #a0a2ab#a0a2ab;" />
+      <ComboBox fx:id="walletTypeCombobox" layoutX="226.0" layoutY="72.0" prefHeight="27.0" prefWidth="150.0" promptText="Select type" style="-fx-background-color: #2196f3; -fx-text-fill: #ffffff;" />
+      <Text fill="#95afc3" layoutX="25.0" layoutY="162.0" strokeType="OUTSIDE" strokeWidth="0.0" text="sfgfdgdfg" />
+      <Separator layoutX="14.0" layoutY="57.0" opacity="0.5" prefHeight="2.0" prefWidth="150.0" style="-fx-background-color: #a0a2ab#a0a2ab;" />
+      <Text fill="#2196f3" layoutX="17.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total:" />
+      <TextField fx:id="walletTypeText" alignment="CENTER" editable="false" layoutX="284.0" layoutY="23.0" prefHeight="27.0" prefWidth="88.0" style="-fx-background-color: #2196f3; -fx-text-fill: #ffffff;" />
+   </children>
+</AnchorPane>

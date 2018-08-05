@@ -1,7 +1,7 @@
 package com.szczepix.myinvest.services.profileService;
 
 import com.szczepix.myinvest.dao.ProfilesDao;
-import com.szczepix.myinvest.entities.Profile;
+import com.szczepix.myinvest.entities.ProfileEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +11,7 @@ public class ProfileService {
     @Autowired
     private ProfilesDao profilesDao;
 
-    public Profile getProfile() {
+    public ProfileEntity getProfile() {
 //        UserLoginModel model=new UserLoginModel();
 //        Profile user=profilesDao.findProfileByUserNameAndPassword(loginModel.getUserName(), loginModel.getPassword());
 //        if (user !=null) {

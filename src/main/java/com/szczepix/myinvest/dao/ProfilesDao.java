@@ -1,12 +1,12 @@
 package com.szczepix.myinvest.dao;
 
-import com.szczepix.myinvest.entities.Profile;
+import com.szczepix.myinvest.entities.ProfileEntity;
 import org.springframework.data.repository.CrudRepository;
 
 import javax.transaction.Transactional;
 
 @Transactional
-public interface ProfilesDao extends CrudRepository<Profile, Long> {
+public interface ProfilesDao extends CrudRepository<ProfileEntity, Long> {
 
-    Profile findProfileByUserNameAndPassword(String username, String password);
+    ProfileEntity findProfileByUserNameAndPassword(String username, String password);
 }

@@ -1,5 +1,8 @@
 package com.szczepix.myinvest.enums;
 
+import lombok.Getter;
+
+@Getter
 public enum ContentViewType {
 
     MENU("Menu", "menu.fxml"),
@@ -12,14 +15,6 @@ public enum ContentViewType {
     ContentViewType(final String title, final String path) {
         this.title = title;
         this.path = path;
-    }
-
-    public String getPath() {
-        return path;
-    }
-
-    public String getTitle() {
-        return title;
     }
 }
 
