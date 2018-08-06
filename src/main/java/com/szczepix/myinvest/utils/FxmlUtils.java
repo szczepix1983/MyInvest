@@ -11,7 +11,6 @@ public class FxmlUtils {
 
     public static Parent load(final URL path, final AnnotationConfigApplicationContext context) throws IOException {
         FXMLLoader loader = new FXMLLoader();
-        System.out.println("context: " + context);
         loader.setControllerFactory(context::getBean);
         loader.setLocation(path);
         return loader.load();

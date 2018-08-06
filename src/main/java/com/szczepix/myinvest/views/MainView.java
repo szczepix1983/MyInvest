@@ -12,7 +12,7 @@ import java.util.ResourceBundle;
 public class MainView extends FXMLView {
 
     @FXML
-    private AnchorPane menuPane;
+    public AnchorPane menuPane;
     @FXML
     public AnchorPane contentPane;
 

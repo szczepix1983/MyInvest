@@ -12,15 +12,19 @@ import javafx.scene.input.MouseEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 
+import java.util.Objects;
+
 public abstract class FXMLView implements Initializable {
 
     @Lazy
     @Autowired
-    protected StageManager stageManager;
+    public StageManager stageManager;
 
     protected void enableButton(final Button button, final EventHandler<ActionEvent> callback) {
         new InteractiveComponent(button);
-        button.setOnAction(callback);
+        if(Objects.nonNull(button)) {
+            button.setOnAction(callback);
+        }
     }
 
     protected void enableCompononet(final Control component) {
@@ -33,8 +37,10 @@ public abstract class FXMLView implements Initializable {
 
         InteractiveComponent(final Control component) {
             this.component = component;
-            this.component.setOnMouseEntered(this::handleOnOver);
-            this.component.setOnMouseExited(this::handleOnOut);
+            if(Objects.nonNull(this.component)){
+                this.component.setOnMouseEntered(this::handleOnOver);
+                this.component.setOnMouseExited(this::handleOnOut);
+            }
         }
 
         private void handleOnOver(MouseEvent event) {

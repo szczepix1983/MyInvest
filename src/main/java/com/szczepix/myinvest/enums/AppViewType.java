@@ -1,8 +1,11 @@
 package com.szczepix.myinvest.enums;
 
+import lombok.Getter;
+
+@Getter
 public enum AppViewType {
 
-//    LOGIN("Login", "login.fxml", false),
+    //    LOGIN("Login", "login.fxml", false),
 //    LOCK("Locked", "lock.fxml", false),
 //    REGISTER("Register", "register.fxml", false),
     MAIN("Welcome", "main.fxml", true);
@@ -16,14 +19,4 @@ public enum AppViewType {
         this.path = path;
         this.resizeable = resizeable;
     }
-
-    public String getPath() {
-        return path;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public boolean getResizeable() { return resizeable; }
 }

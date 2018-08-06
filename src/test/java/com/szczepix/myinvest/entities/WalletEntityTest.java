@@ -1,15 +1,16 @@
 package com.szczepix.myinvest.entities;
 
+import com.szczepix.myinvest.enums.PeriodType;
+import com.szczepix.myinvest.enums.TargetType;
 import com.szczepix.myinvest.enums.WalletType;
-import org.assertj.core.api.Assertions;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.mockito.runners.MockitoJUnitRunner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@RunWith(SpringJUnit4ClassRunner.class)
+@RunWith(MockitoJUnitRunner.class)
 public class WalletEntityTest {
 
     private WalletEntity walletEntity;
@@ -20,7 +21,10 @@ public class WalletEntityTest {
         walletEntity.setId(1);
         walletEntity.setCreatedAt(100L);
         walletEntity.setName("name");
+        walletEntity.setValue(1L);
         walletEntity.setWalletType(WalletType.INVESTMENT);
+        walletEntity.setPeriodType(PeriodType.DAILY);
+        walletEntity.setTargetType(TargetType.GOLD);
     }
 
     @Test
@@ -46,6 +50,21 @@ public class WalletEntityTest {
     @Test
     public void getCreatedAt() {
         assertThat(walletEntity.getCreatedAt()).isEqualTo(100L);
+    }
+
+    @Test
+    public void getValue() {
+        assertThat(walletEntity.getValue()).isEqualTo(1L);
+    }
+
+    @Test
+    public void getTargetType() {
+        assertThat(walletEntity.getTargetType()).isEqualTo(TargetType.GOLD);
+    }
+
+    @Test
+    public void getPeriodType() {
+        assertThat(walletEntity.getPeriodType()).isEqualTo(PeriodType.DAILY);
     }
 
     @Test

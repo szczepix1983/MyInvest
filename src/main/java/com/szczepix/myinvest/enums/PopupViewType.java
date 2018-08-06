@@ -1,8 +1,11 @@
 package com.szczepix.myinvest.enums;
 
-public class PopupViewType {
+import lombok.Getter;
 
-    //Exception("Exception", "exception.fxml");
+@Getter
+public enum PopupViewType {
+
+    EXCEPTION("Exception", "exception.fxml");
 
     String title;
     String path;
@@ -10,13 +13,5 @@ public class PopupViewType {
     PopupViewType(final String title, final String path) {
         this.title = title;
         this.path = path;
-    }
-
-    public String getPath() {
-        return path;
-    }
-
-    public String getTitle() {
-        return title;
     }
 }

@@ -52,7 +52,7 @@ public class StageManager {
 
         stage.setTitle(view.getTitle());
         stage.setScene(scene);
-        stage.setResizable(view.getResizeable());
+        stage.setResizable(view.isResizeable());
         stage.sizeToScene();
         stage.centerOnScreen();
         try {

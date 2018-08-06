@@ -1,5 +1,8 @@
 package com.szczepix.myinvest.enums;
 
+import lombok.Getter;
+
+@Getter
 public enum BaseEventType {
 
     MOCK("TEST_EVENT"),
@@ -9,9 +12,5 @@ public enum BaseEventType {
 
     BaseEventType(final String name) {
         this.name = name;
-    }
-
-    public String getName() {
-        return name;
     }
 }
