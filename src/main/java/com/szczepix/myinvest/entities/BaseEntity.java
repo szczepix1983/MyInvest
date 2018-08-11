@@ -1,4 +1,4 @@
-package com.szczepix.myinvest.services.entityService;
+package com.szczepix.myinvest.entities;
 
 import java.io.Serializable;
 

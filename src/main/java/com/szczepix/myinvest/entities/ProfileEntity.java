@@ -1,6 +1,5 @@
 package com.szczepix.myinvest.entities;
 
-import com.szczepix.myinvest.services.entityService.BaseEntity;
 import lombok.Data;
 
 import javax.persistence.*;

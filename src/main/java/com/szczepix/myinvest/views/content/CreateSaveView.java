@@ -3,7 +3,7 @@ package com.szczepix.myinvest.views.content;
 import com.szczepix.myinvest.enums.PeriodType;
 import com.szczepix.myinvest.enums.TargetType;
 import com.szczepix.myinvest.enums.WalletType;
-import com.szczepix.myinvest.services.walletService.WalletModel;
+import com.szczepix.myinvest.models.WalletModel;
 import com.szczepix.myinvest.services.walletService.WalletService;
 import com.szczepix.myinvest.views.FXMLView;
 import javafx.collections.FXCollections;
@@ -39,8 +39,6 @@ public class CreateSaveView extends FXMLView {
 
     @Autowired
     private WalletService walletService;
-
-    private WalletModel model = new WalletModel();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -116,12 +114,14 @@ public class CreateSaveView extends FXMLView {
 
     private void onCreateButton(ActionEvent event) {
         try {
-            model.setWalletType(WalletType.SAVE);
-            model.setName(walletNameText.getText());
-            model.setValue(Long.parseLong(valueText.getText()));
-            model.setPeriodType(periodCombobox.getValue());
-            model.setTargetType(targetCombobox.getValue());
-            walletService.create(model);
+            WalletModel model = walletService.create();
+            model.getEntity().setValue(Long.parseLong(valueText.getText()));
+            model.getEntity().setName(walletNameText.getText());
+            model.getEntity().setWalletType(WalletType.SAVE);
+            model.getEntity().setCreatedAt(System.currentTimeMillis());
+            model.getEntity().setPeriodType(periodCombobox.getValue());
+            model.getEntity().setTargetType(targetCombobox.getValue());
+            walletService.save(model);
         } catch (Exception e) {
             System.out.println("aaaaaaaaaa " + e);
         }

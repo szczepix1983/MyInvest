@@ -3,11 +3,9 @@ package com.szczepix.myinvest.entities;
 import com.szczepix.myinvest.enums.PeriodType;
 import com.szczepix.myinvest.enums.TargetType;
 import com.szczepix.myinvest.enums.WalletType;
-import com.szczepix.myinvest.services.entityService.BaseEntity;
 import lombok.Data;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "wallets")
