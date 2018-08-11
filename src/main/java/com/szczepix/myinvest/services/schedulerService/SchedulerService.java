@@ -12,7 +12,7 @@ import java.util.logging.Logger;
 
 public class SchedulerService extends ConcurrentTaskScheduler {
 
-    private static final Logger LOG = Logger.getLogger("SchedulerService");
+    private final Logger LOG = Logger.getLogger(getClass().getName());
     private static final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
     private List<IBaseJob> jobs = new ArrayList<>();
 
