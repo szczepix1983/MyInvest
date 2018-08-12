@@ -6,7 +6,8 @@ import lombok.Getter;
 public enum BaseEventType {
 
     MOCK("TEST_EVENT"),
-    VIEW_CHANGE("VIEW_CHANGE");
+    VIEW_CHANGE("VIEW_CHANGE"),
+    WALLET_CHANGE("WALLET_CHANGE");
 
     String name;
 

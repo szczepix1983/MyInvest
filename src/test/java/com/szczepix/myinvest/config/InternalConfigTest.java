@@ -59,7 +59,7 @@ public class InternalConfigTest {
         @Bean
         public FutureService futureService() {
             FutureService futureService = Mockito.mock(FutureService.class);
-            Mockito.when(futureService.getExecutor()).thenReturn(taskExecutor());
+            Mockito.when(futureService.getExecutor()).thenReturn(Mockito.mock(Executor.class));
             return futureService;
         }
 

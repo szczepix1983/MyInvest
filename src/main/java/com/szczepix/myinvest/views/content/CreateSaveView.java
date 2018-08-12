@@ -115,12 +115,12 @@ public class CreateSaveView extends FXMLView {
     private void onCreateButton(ActionEvent event) {
         try {
             WalletModel model = walletService.create();
-            model.getEntity().setValue(Long.parseLong(valueText.getText()));
+            model.getEntity().setValue(Double.parseDouble(valueText.getText()));
             model.getEntity().setName(walletNameText.getText());
-            model.getEntity().setWalletType(WalletType.SAVE);
+            model.getEntity().setWalletType(WalletType.SAVE.getType());
             model.getEntity().setCreatedAt(System.currentTimeMillis());
-            model.getEntity().setPeriodType(periodCombobox.getValue());
-            model.getEntity().setTargetType(targetCombobox.getValue());
+            model.getEntity().setPeriodType(periodCombobox.getValue().getName());
+            model.getEntity().setTargetType(targetCombobox.getValue().getName());
             walletService.save(model);
         } catch (Exception e) {
             System.out.println("aaaaaaaaaa " + e);

@@ -21,10 +21,10 @@ public class WalletEntityTest {
         walletEntity.setId(1);
         walletEntity.setCreatedAt(100L);
         walletEntity.setName("name");
-        walletEntity.setValue(1L);
-        walletEntity.setWalletType(WalletType.INVESTMENT);
-        walletEntity.setPeriodType(PeriodType.DAILY);
-        walletEntity.setTargetType(TargetType.GOLD);
+        walletEntity.setValue(1.10);
+        walletEntity.setWalletType(WalletType.INVESTMENT.getType());
+        walletEntity.setPeriodType(PeriodType.DAILY.getName());
+        walletEntity.setTargetType(TargetType.GOLD.getName());
     }
 
     @Test
@@ -44,7 +44,7 @@ public class WalletEntityTest {
 
     @Test
     public void getWalletType() {
-        assertThat(walletEntity.getWalletType()).isEqualTo(WalletType.INVESTMENT);
+        assertThat(walletEntity.getWalletType()).isEqualTo(WalletType.INVESTMENT.getType());
     }
 
     @Test
@@ -54,17 +54,17 @@ public class WalletEntityTest {
 
     @Test
     public void getValue() {
-        assertThat(walletEntity.getValue()).isEqualTo(1L);
+        assertThat(walletEntity.getValue()).isEqualTo(1.10);
     }
 
     @Test
     public void getTargetType() {
-        assertThat(walletEntity.getTargetType()).isEqualTo(TargetType.GOLD);
+        assertThat(walletEntity.getTargetType()).isEqualTo(TargetType.GOLD.getName());
     }
 
     @Test
     public void getPeriodType() {
-        assertThat(walletEntity.getPeriodType()).isEqualTo(PeriodType.DAILY);
+        assertThat(walletEntity.getPeriodType()).isEqualTo(PeriodType.DAILY.getName());
     }
 
     @Test

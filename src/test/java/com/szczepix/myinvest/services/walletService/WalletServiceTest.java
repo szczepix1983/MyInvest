@@ -2,6 +2,8 @@ package com.szczepix.myinvest.services.walletService;
 
 import com.szczepix.myinvest.dao.WalletsRepository;
 import com.szczepix.myinvest.models.WalletModel;
+import com.szczepix.myinvest.services.eventService.EventService;
+import com.szczepix.myinvest.services.schedulerService.SchedulerService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
@@ -66,6 +68,14 @@ public class WalletServiceTest {
             Mockito.when(repository.findAll()).thenReturn(new ArrayList<>());
             return repository;
         }
+
+        @Bean
+        public EventService eventService(){
+            return mock(EventService.class);
+        }
+
+        @Bean
+        public SchedulerService schedulerService() { return mock(SchedulerService.class); }
 
         @Bean
         public WalletCache cache() {

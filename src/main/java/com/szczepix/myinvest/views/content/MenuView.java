@@ -32,6 +32,6 @@ public class MenuView extends FXMLView {
     }
 
     protected void handleWalletsButton(ActionEvent actionEvent) {
-        stageManager.show(ContentViewType.CREATE_WALLETS, stageManager.getMainView().contentPane);
+        stageManager.show(ContentViewType.WALLETS, stageManager.getMainView().contentPane);
     }
 }

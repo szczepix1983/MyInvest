@@ -3,6 +3,7 @@ package com.szczepix.myinvest.services.schedulerService;
 import com.szczepix.myinvest.jobs.IBaseJob;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.scheduling.concurrent.ConcurrentTaskScheduler;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -10,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
+@Service
 public class SchedulerService extends ConcurrentTaskScheduler {
 
     private final Logger LOG = Logger.getLogger(getClass().getName());
@@ -20,7 +22,7 @@ public class SchedulerService extends ConcurrentTaskScheduler {
         super();
     }
 
-    @Scheduled(fixedRate = 1000, initialDelay = 5000)
+    @Scheduled(fixedRate = 1000, initialDelay = 1000)
     public void scheduleTasks() {
         jobs.stream().filter(IBaseJob::isReady).forEach(this::executeJob);
     }

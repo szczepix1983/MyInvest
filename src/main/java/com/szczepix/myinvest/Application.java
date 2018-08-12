@@ -12,9 +12,11 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 @SpringBootApplication
 public class Application extends javafx.application.Application {
 
-    private ConfigurableApplicationContext context;
+    protected ConfigurableApplicationContext context;
 
-    private AnnotationConfigApplicationContext springContext;
+    protected StageManager stageManager;
+
+    protected AnnotationConfigApplicationContext springContext;
 
     @Override
     public void init() throws Exception {
@@ -24,7 +26,7 @@ public class Application extends javafx.application.Application {
 
     @Override
     public void start(Stage primaryStage) {
-        StageManager stageManager = springContext.getBean(StageManager.class, primaryStage);
+        stageManager = springContext.getBean(StageManager.class, primaryStage);
         stageManager.show(AppViewType.MAIN);
     }
 
@@ -32,7 +34,6 @@ public class Application extends javafx.application.Application {
     public void stop() {
         context.stop();
     }
-
 
     public static void main(String[] args) {
         launch(Application.class, args);

@@ -25,7 +25,7 @@ public class MenuViewTest extends FXMLViewTest<MenuView> {
     @Test
     public void handleWalletsButton() {
         getView().handleWalletsButton(null);
-        verify(getView().stageManager, times(1)).show(eq(ContentViewType.CREATE_WALLETS), any());
+        verify(getView().stageManager, times(1)).show(eq(ContentViewType.WALLETS), any());
     }
 
     @Test

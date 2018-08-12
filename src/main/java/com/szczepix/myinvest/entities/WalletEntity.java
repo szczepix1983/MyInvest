@@ -1,8 +1,5 @@
 package com.szczepix.myinvest.entities;
 
-import com.szczepix.myinvest.enums.PeriodType;
-import com.szczepix.myinvest.enums.TargetType;
-import com.szczepix.myinvest.enums.WalletType;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -18,10 +15,10 @@ public class WalletEntity extends BaseEntity {
     private int id;
 
     private String name;
-    private Long value;
-    private WalletType walletType;
-    private TargetType targetType;
-    private PeriodType periodType;
+    private Double value;
+    private String walletType;
+    private String targetType;
+    private String periodType;
     private Long createdAt;
 
     @Override

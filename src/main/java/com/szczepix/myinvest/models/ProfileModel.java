@@ -1,14 +1,14 @@
 package com.szczepix.myinvest.models;
 
 import com.szczepix.myinvest.entities.ProfileEntity;
-import lombok.Data;
+import lombok.Getter;
 
-@Data
 public class ProfileModel {
 
+    @Getter
     private final ProfileEntity entity;
 
-    public ProfileModel(final ProfileEntity entity){
+    public ProfileModel(final ProfileEntity entity) {
         this.entity = entity;
     }
 }
