@@ -47,7 +47,7 @@ public class FutureServiceTest {
     @Test
     public void submit() throws Exception {
         futureService.submit(request);
-        countdownLatch.await(5, TimeUnit.SECONDS);
+        countdownLatch.await(10, TimeUnit.SECONDS);
         assertThat(response).isNotNull();
         assertThat(response.content).isNotNull();
         assertThat(request.completeCount).isEqualTo(1);

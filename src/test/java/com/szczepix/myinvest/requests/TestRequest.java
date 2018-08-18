@@ -24,6 +24,6 @@ public class TestRequest extends BaseGetRequest<String> {
 
     @Override
     public String getPath() {
-        return "https://google.com";
+        return "http://localhost";
     }
 }

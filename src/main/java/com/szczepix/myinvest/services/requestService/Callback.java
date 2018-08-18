@@ -19,8 +19,12 @@ public class Callback {
 
     public Object invoke(Object... parameters) throws InvocationTargetException, IllegalAccessException, NoSuchMethodException {
         Object callableObject = Objects.isNull(scope) ? this : scope;
-        Method method = callableObject.getClass().getMethod(invokeMethod, getParameterClasses(parameters));
+        Method method = callableObject.getClass().getMethod(Objects.isNull(invokeMethod) ? "emptyCallback" : invokeMethod, getParameterClasses(parameters));
         return method.invoke(callableObject, parameters);
+    }
+
+    public void emptyCallback(Object parameters) {
+
     }
 
     private Class[] getParameterClasses(Object... parameters) {

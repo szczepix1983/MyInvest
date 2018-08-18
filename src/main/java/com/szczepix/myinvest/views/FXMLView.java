@@ -21,6 +21,7 @@ public abstract class FXMLView implements Initializable {
     public StageManager stageManager;
 
     protected void enableButton(final Button button, final EventHandler<ActionEvent> callback) {
+        // todo - needs refactor to cover with unit tests
         new InteractiveComponent(button);
         if(Objects.nonNull(button)) {
             button.setOnAction(callback);

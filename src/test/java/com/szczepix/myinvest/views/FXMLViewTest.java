@@ -1,6 +1,10 @@
 package com.szczepix.myinvest.views;
 
 import com.szczepix.myinvest.managers.StageManager;
+import javafx.embed.swing.JFXPanel;
+import javafx.event.ActionEvent;
+import javafx.scene.control.Button;
+import javafx.scene.control.Control;
 import javafx.scene.layout.AnchorPane;
 import org.junit.Before;
 import org.junit.Test;
@@ -13,8 +17,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Mockito.doReturn;
-import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.*;
 
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes = FXMLViewTest.FXMLViewTestConfiguration.class)
@@ -24,6 +27,7 @@ public abstract class FXMLViewTest<T extends FXMLView> {
     private StageManager stageManager;
 
     private FXMLView view;
+    private JFXPanel fxPanel;
 
     public abstract Class<T> getTClass();
 
@@ -33,6 +37,7 @@ public abstract class FXMLViewTest<T extends FXMLView> {
 
     @Before
     public void setUp() throws Exception {
+        fxPanel = new JFXPanel();
         view = getTClass().newInstance();
         view.stageManager = stageManager;
     }
@@ -45,9 +50,29 @@ public abstract class FXMLViewTest<T extends FXMLView> {
     }
 
     @Test
-    public void enableCompononet() {
-        //Control control = new Control();
+    public void enableCompononetWithoutButton() {
         view.enableCompononet(null);
+    }
+
+    @Test
+    public void enableCompononetWithButton() {
+        Control component = mock(Control.class);
+        view.enableCompononet(component);
+    }
+
+    @Test
+    public void enableWithButton() {
+        Button button = new Button();
+        view.enableButton(button, this::handleButton);
+    }
+
+    @Test
+    public void enableWithoutButton() {
+        view.enableButton(null, this::handleButton);
+    }
+
+    public void handleButton(ActionEvent actionEvent) {
+
     }
 
     @Configuration
