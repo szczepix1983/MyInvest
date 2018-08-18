@@ -19,7 +19,7 @@
 	</parent>
 
 	<properties>
-		<project.test.coverage>50</project.test.coverage>
+		<project.test.coverage>0.0</project.test.coverage>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
@@ -77,6 +77,11 @@
 
     <build>
         <plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+
             <plugin>
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
@@ -101,11 +106,14 @@
 						</goals>
 						<configuration>
 							<rules>
-								<rule implementation="org.jacoco.maven.RuleConfiguration">
-									<element>BUNDLE</element>
+								<rule>
+									<element>CLASS</element>
+									<!--<excludes>-->
+										<!--<exclude>*Test</exclude>-->
+									<!--</excludes>-->
 									<limits>
-										<limit implementation="org.jacoco.report.check.Limit">
-											<counter>INSTRUCTION</counter>
+										<limit>
+											<counter>LINE</counter>
 											<value>COVEREDRATIO</value>
 											<minimum>${project.test.coverage}</minimum>
 										</limit>
@@ -115,11 +123,6 @@
 						</configuration>
 					</execution>
 				</executions>
-			</plugin>
-
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
         </plugins>
     </build>

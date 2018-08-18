@@ -5,6 +5,6 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface WalletsRepository extends CrudRepository<WalletEntity, Long> {
+public interface IWalletRepository extends CrudRepository<WalletEntity, Integer> {
 
 }

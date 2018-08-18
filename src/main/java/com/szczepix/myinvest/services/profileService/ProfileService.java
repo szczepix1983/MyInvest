@@ -1,6 +1,6 @@
 package com.szczepix.myinvest.services.profileService;
 
-import com.szczepix.myinvest.dao.ProfilesRepository;
+import com.szczepix.myinvest.dao.IProfileRepository;
 import com.szczepix.myinvest.models.ProfileModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
@@ -15,15 +15,18 @@ import java.util.stream.StreamSupport;
 
 @Service
 @Scope(value = ConfigurableBeanFactory.SCOPE_SINGLETON)
-public class ProfileService {
+public class ProfileService implements IProfileService {
 
     private final Logger LOG = Logger.getLogger(getClass().getName());
 
-    @Autowired
-    private ProfilesRepository repository;
+    private final IProfileRepository repository;
+    private final ProfilesCache cache;
 
     @Autowired
-    private ProfilesCache cache;
+    public ProfileService(final IProfileRepository repository, final ProfilesCache cache){
+        this.repository = repository;
+        this.cache = cache;
+    }
 
     @PostConstruct
     public void init() {

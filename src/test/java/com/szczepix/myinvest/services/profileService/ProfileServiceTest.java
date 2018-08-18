@@ -1,7 +1,8 @@
 package com.szczepix.myinvest.services.profileService;
 
-import com.szczepix.myinvest.dao.ProfilesRepository;
+import com.szczepix.myinvest.dao.IProfileRepository;
 import com.szczepix.myinvest.entities.ProfileEntity;
+import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
@@ -16,8 +17,7 @@ import java.util.ArrayList;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Matchers.eq;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ContextConfiguration(classes = ProfileServiceTest.ProfileServiceTestConfiguration.class)
 @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
@@ -25,14 +25,23 @@ import static org.mockito.Mockito.when;
 public class ProfileServiceTest {
 
     @Autowired
-    private ProfileServiceMock profileService;
+    private ProfileService profileService;
 
     @Autowired
-    private ProfilesRepository repository;
+    private IProfileRepository repository;
+
+    @Autowired
+    private ProfilesCache cache;
+
+    @After
+    public void tearDown() {
+        reset(repository);
+    }
 
     @Test
     public void init() {
-        assertThat(profileService.postConstructInitialized).isTrue();
+        profileService.init();
+        verify(cache, atLeast(1)).update(any());
     }
 
     @Test
@@ -62,8 +71,8 @@ public class ProfileServiceTest {
     static class ProfileServiceTestConfiguration {
 
         @Bean
-        public ProfilesRepository getRepository() {
-            ProfilesRepository repository = mock(ProfilesRepository.class);
+        public IProfileRepository repository() {
+            IProfileRepository repository = mock(IProfileRepository.class);
             Mockito.when(repository.findAll()).thenReturn(new ArrayList<>());
             return repository;
         }
@@ -75,18 +84,7 @@ public class ProfileServiceTest {
 
         @Bean
         public ProfileService getProfileService() {
-            return new ProfileServiceMock();
-        }
-    }
-
-    static class ProfileServiceMock extends ProfileService {
-
-        boolean postConstructInitialized;
-
-        @Override
-        public void init() {
-            postConstructInitialized = true;
-            super.init();
+            return new ProfileService(repository(), cache());
         }
     }
 }

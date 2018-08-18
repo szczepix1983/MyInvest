@@ -9,8 +9,8 @@ public class GoldPriceRatesRequest extends BaseGetRequest<GoldPriceRatesResponse
 
     private final String currencies;
 
-    public GoldPriceRatesRequest(final Object scope, final List<String> currencies) {
-        super(scope, "");
+    public GoldPriceRatesRequest(final Object scope, final String invokeMethod, final List<String> currencies) {
+        super(scope, invokeMethod);
         this.currencies = String.join(",", currencies);
     }
 

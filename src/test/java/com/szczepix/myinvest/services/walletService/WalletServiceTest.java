@@ -1,9 +1,10 @@
 package com.szczepix.myinvest.services.walletService;
 
-import com.szczepix.myinvest.dao.WalletsRepository;
+import com.szczepix.myinvest.dao.IWalletRepository;
+import com.szczepix.myinvest.jobs.IJobFactory;
 import com.szczepix.myinvest.models.WalletModel;
 import com.szczepix.myinvest.services.eventService.EventService;
-import com.szczepix.myinvest.services.schedulerService.SchedulerService;
+import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
@@ -26,14 +27,23 @@ import static org.mockito.Mockito.*;
 public class WalletServiceTest {
 
     @Autowired
-    private WalletServiceMock walletService;
+    private WalletService walletService;
 
     @Autowired
-    private WalletsRepository repository;
+    private IWalletRepository repository;
+
+    @Autowired
+    private WalletCache cache;
+
+    @After
+    public void tearDown() {
+        reset(repository);
+    }
 
     @Test
     public void init() {
-        assertThat(walletService.postConstructInitialized).isTrue();
+        walletService.init();
+        verify(cache, atLeast(1)).update(any());
     }
 
     @Test
@@ -63,19 +73,16 @@ public class WalletServiceTest {
     static class WalletServiceTestConfiguration {
 
         @Bean
-        public WalletsRepository getRepository() {
-            WalletsRepository repository = mock(WalletsRepository.class);
+        public IWalletRepository repository() {
+            IWalletRepository repository = mock(IWalletRepository.class);
             Mockito.when(repository.findAll()).thenReturn(new ArrayList<>());
             return repository;
         }
 
         @Bean
-        public EventService eventService(){
+        public EventService eventService() {
             return mock(EventService.class);
         }
-
-        @Bean
-        public SchedulerService schedulerService() { return mock(SchedulerService.class); }
 
         @Bean
         public WalletCache cache() {
@@ -84,18 +91,13 @@ public class WalletServiceTest {
 
         @Bean
         public WalletService getWalletService() {
-            return new WalletServiceMock();
+            return new WalletService(repository(), cache(), jobFactory(), eventService());
         }
-    }
 
-    static class WalletServiceMock extends WalletService {
-
-        boolean postConstructInitialized;
-
-        @Override
-        public void init() {
-            postConstructInitialized = true;
-            super.init();
+        @Bean
+        public IJobFactory jobFactory() {
+            return mock(IJobFactory.class);
         }
+
     }
 }

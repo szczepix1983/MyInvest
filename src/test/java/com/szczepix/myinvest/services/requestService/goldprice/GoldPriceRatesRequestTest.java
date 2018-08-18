@@ -24,7 +24,7 @@ public class GoldPriceRatesRequestTest {
     @Before
     public void setUp() {
         fxPanel = new JFXPanel();
-        request = new GoldPriceRatesRequest(this, currencies);
+        request = new GoldPriceRatesRequest(this, "", currencies);
         countdownLatch = new CountDownLatch(4);
         countdownLatch.countDown();
     }

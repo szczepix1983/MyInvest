@@ -1,36 +1,33 @@
 package com.szczepix.myinvest.services.walletService;
 
-import com.szczepix.myinvest.dao.WalletsRepository;
+import com.szczepix.myinvest.dao.IWalletRepository;
 import com.szczepix.myinvest.entities.WalletEntity;
-import com.szczepix.myinvest.jobs.wallets.UpdateWalletJob;
+import com.szczepix.myinvest.jobs.IJobFactory;
 import com.szczepix.myinvest.models.WalletModel;
 import com.szczepix.myinvest.services.eventService.EventService;
-import com.szczepix.myinvest.services.schedulerService.SchedulerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import java.util.List;
-import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 @Service
 public class WalletService {
 
-    private final Logger LOG = Logger.getLogger(getClass().getName());
+    private final IWalletRepository repository;
+    private final WalletCache cache;
+    private final EventService eventService;
+    private final IJobFactory jobFactory;
 
     @Autowired
-    private WalletsRepository repository;
-
-    @Autowired
-    private WalletCache cache;
-
-    @Autowired
-    private SchedulerService taskScheduler;
-
-    @Autowired
-    private EventService eventService;
+    public WalletService(final IWalletRepository repository, final WalletCache cache, final IJobFactory jobFactory, final EventService eventService) {
+        this.repository = repository;
+        this.cache = cache;
+        this.jobFactory = jobFactory;
+        this.eventService = eventService;
+    }
 
     @PostConstruct
     public void init() {
@@ -39,7 +36,7 @@ public class WalletService {
     }
 
     private void updateJobs() {
-        cache.getCache().forEach(wallet -> taskScheduler.addJob(new UpdateWalletJob(wallet, 5)));
+        cache.getCache().forEach(wallet -> jobFactory.createWalletJob(wallet));
     }
 
     private void updateCache() {
