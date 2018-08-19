@@ -28,10 +28,10 @@ public class MenuView extends FXMLView {
     }
 
     protected void handleProfileButton(ActionEvent actionEvent) {
-        stageManager.show(ContentViewType.PROFILE, stageManager.getMainView().contentPane);
+        stageManager.show(ContentViewType.PROFILE, stageManager.getView().contentPane);
     }
 
     protected void handleWalletsButton(ActionEvent actionEvent) {
-        stageManager.show(ContentViewType.WALLETS, stageManager.getMainView().contentPane);
+        stageManager.show(ContentViewType.WALLETS, stageManager.getView().contentPane);
     }
 }

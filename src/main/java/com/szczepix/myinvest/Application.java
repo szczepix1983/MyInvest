@@ -2,7 +2,7 @@ package com.szczepix.myinvest;
 
 import com.szczepix.myinvest.config.InternalConfig;
 import com.szczepix.myinvest.enums.AppViewType;
-import com.szczepix.myinvest.managers.StageManager;
+import com.szczepix.myinvest.managers.IStageManager;
 import javafx.stage.Stage;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -14,9 +14,13 @@ public class Application extends javafx.application.Application {
 
     protected ConfigurableApplicationContext context;
 
-    protected StageManager stageManager;
+    protected IStageManager stageManager;
 
     protected AnnotationConfigApplicationContext springContext;
+
+    public static void main(String[] args) {
+        launch(Application.class, args);
+    }
 
     @Override
     public void init() throws Exception {
@@ -26,16 +30,12 @@ public class Application extends javafx.application.Application {
 
     @Override
     public void start(Stage primaryStage) {
-        stageManager = springContext.getBean(StageManager.class, primaryStage);
+        stageManager = springContext.getBean(IStageManager.class, primaryStage);
         stageManager.show(AppViewType.MAIN);
     }
 
     @Override
     public void stop() {
         context.stop();
-    }
-
-    public static void main(String[] args) {
-        launch(Application.class, args);
     }
 }

@@ -20,7 +20,7 @@ import static org.mockito.Mockito.*;
 public class RequestServiceTest {
 
     @Autowired
-    private RequestService requestService;
+    private IRequestService requestService;
 
     @Autowired
     private FutureService futureService;
@@ -36,12 +36,12 @@ public class RequestServiceTest {
     static class RequestServiceTestConfiguration {
 
         @Bean
-        public RequestService requestService() {
-            return new RequestService();
+        public IRequestService requestService() {
+            return new RequestService(futureService());
         }
 
         @Bean
-        public FutureService getFutureService() {
+        public FutureService futureService() {
             return mock(FutureService.class);
         }
     }

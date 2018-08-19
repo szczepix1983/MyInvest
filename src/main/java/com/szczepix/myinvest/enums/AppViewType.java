@@ -8,7 +8,8 @@ public enum AppViewType {
     //    LOGIN("Login", "login.fxml", false),
 //    LOCK("Locked", "lock.fxml", false),
 //    REGISTER("Register", "register.fxml", false),
-    MAIN("Welcome", "main.fxml", true);
+    MAIN("Welcome", "main.fxml", true),
+    MOCK("Test", "mock.fxml", true);
 
     String title;
     String path;

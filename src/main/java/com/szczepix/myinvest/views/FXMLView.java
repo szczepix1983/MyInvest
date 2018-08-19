@@ -1,7 +1,7 @@
 package com.szczepix.myinvest.views;
 
 
-import com.szczepix.myinvest.managers.StageManager;
+import com.szczepix.myinvest.managers.IStageManager;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.Initializable;
@@ -18,7 +18,7 @@ public abstract class FXMLView implements Initializable {
 
     @Lazy
     @Autowired
-    public StageManager stageManager;
+    public IStageManager stageManager;
 
     protected void enableButton(final Button button, final EventHandler<ActionEvent> callback) {
         // todo - needs refactor to cover with unit tests

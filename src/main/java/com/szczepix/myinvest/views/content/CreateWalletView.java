@@ -2,7 +2,7 @@ package com.szczepix.myinvest.views.content;
 
 import com.szczepix.myinvest.enums.ContentViewType;
 import com.szczepix.myinvest.enums.WalletType;
-import com.szczepix.myinvest.services.walletService.WalletService;
+import com.szczepix.myinvest.services.walletService.IWalletService;
 import com.szczepix.myinvest.views.FXMLView;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -36,7 +36,7 @@ public class CreateWalletView extends FXMLView {
     public AnchorPane typePane;
 
     @Autowired
-    private WalletService walletService;
+    private IWalletService walletService;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

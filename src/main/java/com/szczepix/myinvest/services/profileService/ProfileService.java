@@ -23,7 +23,7 @@ public class ProfileService implements IProfileService {
     private final ProfilesCache cache;
 
     @Autowired
-    public ProfileService(final IProfileRepository repository, final ProfilesCache cache){
+    public ProfileService(final IProfileRepository repository, final ProfilesCache cache) {
         this.repository = repository;
         this.cache = cache;
     }
@@ -39,10 +39,12 @@ public class ProfileService implements IProfileService {
                 .collect(Collectors.toList()));
     }
 
+    @Override
     public ProfileModel findProfileByUserNameAndPassword(String username, String password) {
         return new ProfileModel(repository.findProfileByUserNameAndPassword(username, password));
     }
 
+    @Override
     public List<ProfileModel> getProfiles() {
         return cache.getCache();
     }

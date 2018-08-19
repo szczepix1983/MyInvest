@@ -20,20 +20,14 @@ public abstract class BaseGetRequest<E> extends BaseRequest<E> {
     E getContent() throws IOException {
         HttpGet request = new HttpGet(getPath());
         StringBuilder responseContent = new StringBuilder();
-        try {
-            HttpResponse response = client.execute(request);
-            HttpEntity entity = response.getEntity();
-            if (entity != null) {
-                try (InputStream stream = entity.getContent()) {
-                    BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
-                    String line;
-                    while ((line = reader.readLine()) != null) {
-                        responseContent.append(line);
-                    }
-                }
+        HttpResponse response = client.execute(request);
+        HttpEntity entity = response.getEntity();
+        try (InputStream stream = entity.getContent()) {
+            BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                responseContent.append(line);
             }
-        } catch (IOException e) {
-            e.printStackTrace();
         }
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.configure(DeserializationConfig.Feature.FAIL_ON_UNKNOWN_PROPERTIES, false);

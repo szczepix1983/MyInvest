@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 @Service
-public class WalletService {
+public class WalletService implements IWalletService {
 
     private final IWalletRepository repository;
     private final WalletCache cache;
@@ -40,24 +40,29 @@ public class WalletService {
     }
 
     private void updateCache() {
-        cache.update(StreamSupport.stream(repository.findAll().spliterator(), false).map(entity -> new WalletModel(entity, eventService))
+        cache.update(StreamSupport.stream(repository.findAll().spliterator(), false)
+                .map(entity -> new WalletModel(entity, eventService))
                 .collect(Collectors.toList()));
     }
 
+    @Override
     public WalletModel create() {
         WalletEntity entity = new WalletEntity();
         WalletModel model = new WalletModel(entity, eventService);
         return model;
     }
 
+    @Override
     public void save(final WalletModel model) {
         repository.save(model.getEntity());
     }
 
+    @Override
     public WalletModel getWallet(final Integer id) {
         return cache.getById(id);
     }
 
+    @Override
     public List<WalletModel> getWallets() {
         return cache.getCache();
     }

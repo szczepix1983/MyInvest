@@ -18,7 +18,7 @@ public class MainView extends FXMLView {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        stageManager.setMainView(this);
+        stageManager.setView(this);
         stageManager.show(ContentViewType.MENU, menuPane);
     }
 }

@@ -28,7 +28,7 @@ public class SettingService implements ISettingService {
     private final IJobFactory jobFactory;
 
     @Autowired
-    public SettingService(final ISettingRepository repository, final SettingCache cache, final IJobFactory jobFactory){
+    public SettingService(final ISettingRepository repository, final SettingCache cache, final IJobFactory jobFactory) {
         this.repository = repository;
         this.cache = cache;
         this.jobFactory = jobFactory;
@@ -61,6 +61,7 @@ public class SettingService implements ISettingService {
                 .collect(Collectors.toList()));
     }
 
+    @Override
     public SettingModel getSettings() {
         return cache.getById(ID);
     }

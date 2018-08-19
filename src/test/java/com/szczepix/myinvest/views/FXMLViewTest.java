@@ -1,6 +1,6 @@
 package com.szczepix.myinvest.views;
 
-import com.szczepix.myinvest.managers.StageManager;
+import com.szczepix.myinvest.managers.IStageManager;
 import javafx.embed.swing.JFXPanel;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
@@ -17,14 +17,15 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.mock;
 
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes = FXMLViewTest.FXMLViewTestConfiguration.class)
 public abstract class FXMLViewTest<T extends FXMLView> {
 
     @Autowired
-    private StageManager stageManager;
+    private IStageManager stageManager;
 
     private FXMLView view;
     private JFXPanel fxPanel;
@@ -84,12 +85,12 @@ public abstract class FXMLViewTest<T extends FXMLView> {
         }
 
         @Bean
-        public StageManager stageManager() {
-            StageManager stageManager = mock(StageManager.class);
+        public IStageManager stageManager() {
+            IStageManager stageManager = mock(IStageManager.class);
             MainView mainView = mock(MainView.class);
             mainView.contentPane = mock(AnchorPane.class);
             mainView.menuPane = mock(AnchorPane.class);
-            doReturn(mainView).when(stageManager).getMainView();
+            doReturn(mainView).when(stageManager).getView();
             return stageManager;
         }
     }

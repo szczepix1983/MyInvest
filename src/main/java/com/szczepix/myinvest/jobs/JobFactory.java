@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
 public class JobFactory implements IJobFactory {
 
     private final SchedulerService schedulerService;
-    private RequestService requestService;
+    private final RequestService requestService;
 
     @Autowired
     public JobFactory(final RequestService requestService, final SchedulerService schedulerService) {

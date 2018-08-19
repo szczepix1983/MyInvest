@@ -25,7 +25,7 @@ import static org.mockito.Mockito.*;
 public class SettingServiceTest {
 
     @Autowired
-    private SettingService settingService;
+    private ISettingService settingService;
 
     @Autowired
     private ISettingRepository repository;
@@ -62,7 +62,7 @@ public class SettingServiceTest {
         }
 
         @Bean
-        public SettingService settingService() {
+        public ISettingService settingService() {
             return new SettingService(repository(), cache(), jobFactory());
         }
 

@@ -15,4 +15,17 @@ public class FxmlUtils {
         loader.setLocation(path);
         return loader.load();
     }
+
+    public static void load(final URL path, final Object controller) {
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setController(controller);
+        fxmlLoader.setRoot(controller);
+        fxmlLoader.setLocation(path);
+
+        try {
+            fxmlLoader.load();
+        } catch (IOException exception) {
+            throw new RuntimeException(exception);
+        }
+    }
 }

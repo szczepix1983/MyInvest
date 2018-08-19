@@ -1,6 +1,7 @@
 package com.szczepix.myinvest.services.walletService;
 
 import com.szczepix.myinvest.dao.IWalletRepository;
+import com.szczepix.myinvest.entities.WalletEntity;
 import com.szczepix.myinvest.jobs.IJobFactory;
 import com.szczepix.myinvest.models.WalletModel;
 import com.szczepix.myinvest.services.eventService.EventService;
@@ -16,6 +17,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Matchers.eq;
@@ -27,13 +29,16 @@ import static org.mockito.Mockito.*;
 public class WalletServiceTest {
 
     @Autowired
-    private WalletService walletService;
+    private IWalletService walletService;
 
     @Autowired
     private IWalletRepository repository;
 
     @Autowired
     private WalletCache cache;
+
+    @Autowired
+    private IJobFactory jobFactory;
 
     @After
     public void tearDown() {
@@ -44,6 +49,7 @@ public class WalletServiceTest {
     public void init() {
         walletService.init();
         verify(cache, atLeast(1)).update(any());
+        verify(jobFactory, atLeast(1)).createWalletJob(any());
     }
 
     @Test
@@ -66,7 +72,7 @@ public class WalletServiceTest {
     @Test
     public void getWallets() {
         assertThat(walletService.getWallets()).isNotNull();
-        assertThat(walletService.getWallets().size()).isEqualTo(0);
+        assertThat(walletService.getWallets().size()).isEqualTo(1);
     }
 
     @Configuration
@@ -75,7 +81,9 @@ public class WalletServiceTest {
         @Bean
         public IWalletRepository repository() {
             IWalletRepository repository = mock(IWalletRepository.class);
-            Mockito.when(repository.findAll()).thenReturn(new ArrayList<>());
+            List<WalletEntity> list = new ArrayList<>();
+            list.add(new WalletEntity());
+            Mockito.when(repository.findAll()).thenReturn(list);
             return repository;
         }
 
@@ -86,11 +94,15 @@ public class WalletServiceTest {
 
         @Bean
         public WalletCache cache() {
-            return mock(WalletCache.class);
+            WalletCache cache = mock(WalletCache.class);
+            List<WalletModel> list = new ArrayList<>();
+            list.add(mock(WalletModel.class));
+            Mockito.when(cache.getCache()).thenReturn(list);
+            return cache;
         }
 
         @Bean
-        public WalletService getWalletService() {
+        public IWalletService getWalletService() {
             return new WalletService(repository(), cache(), jobFactory(), eventService());
         }
 

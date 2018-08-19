@@ -3,7 +3,7 @@ package com.szczepix.myinvest.views;
 import com.szczepix.myinvest.enums.ContentViewType;
 import com.szczepix.myinvest.models.WalletModel;
 import com.szczepix.myinvest.services.eventService.EventService;
-import com.szczepix.myinvest.services.walletService.WalletService;
+import com.szczepix.myinvest.services.walletService.IWalletService;
 import com.szczepix.myinvest.views.components.WalletItemView;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -28,7 +28,7 @@ public class WalletsView extends FXMLView {
     public GridPane gridPane;
 
     @Autowired
-    private WalletService walletService;
+    private IWalletService walletService;
 
     @Autowired
     private EventService eventService;
@@ -54,7 +54,7 @@ public class WalletsView extends FXMLView {
     }
 
     private void onCreateButton(ActionEvent event) {
-        stageManager.show(ContentViewType.CREATE_WALLETS, stageManager.getMainView().contentPane);
+        stageManager.show(ContentViewType.CREATE_WALLETS, stageManager.getView().contentPane);
     }
 
     private String getTotalWallets() {

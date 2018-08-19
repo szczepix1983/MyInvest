@@ -1,5 +1,6 @@
 package com.szczepix.myinvest.config;
 
+import com.szczepix.myinvest.managers.IStageManager;
 import com.szczepix.myinvest.managers.StageManager;
 import com.szczepix.myinvest.services.futureService.FutureService;
 import com.szczepix.myinvest.services.schedulerService.SchedulerService;
@@ -40,7 +41,7 @@ public class InternalConfig {
 
     @Bean
     @Lazy
-    public StageManager stageManager(final Stage stage) {
+    public IStageManager stageManager(final Stage stage) {
         return new StageManager(stage);
     }
 }

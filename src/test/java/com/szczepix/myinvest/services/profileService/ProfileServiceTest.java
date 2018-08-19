@@ -25,7 +25,7 @@ import static org.mockito.Mockito.*;
 public class ProfileServiceTest {
 
     @Autowired
-    private ProfileService profileService;
+    private IProfileService profileService;
 
     @Autowired
     private IProfileRepository repository;
@@ -83,7 +83,7 @@ public class ProfileServiceTest {
         }
 
         @Bean
-        public ProfileService getProfileService() {
+        public IProfileService getProfileService() {
             return new ProfileService(repository(), cache());
         }
     }

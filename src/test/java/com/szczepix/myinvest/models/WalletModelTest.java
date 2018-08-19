@@ -2,6 +2,7 @@ package com.szczepix.myinvest.models;
 
 import com.szczepix.myinvest.entities.WalletEntity;
 import com.szczepix.myinvest.enums.PeriodType;
+import com.szczepix.myinvest.enums.TargetType;
 import com.szczepix.myinvest.services.eventService.EventService;
 import org.junit.Before;
 import org.junit.Test;
@@ -50,6 +51,21 @@ public class WalletModelTest {
     public void getWrongPeriodType() {
         walletModel.getEntity().setPeriodType("");
         walletModel.getPeriodType();
+    }
+
+    @Test
+    public void getTargetType() {
+        TargetType[] types = TargetType.class.getEnumConstants();
+        for (TargetType type : types) {
+            walletModel.getEntity().setTargetType(type.getName());
+            assertThat(walletModel.getTargetType()).isEqualTo(type);
+        }
+    }
+
+    @Test(expected = RuntimeException.class)
+    public void getWrongTargetType() {
+        walletModel.getEntity().setTargetType("");
+        walletModel.getTargetType();
     }
 
     @Test

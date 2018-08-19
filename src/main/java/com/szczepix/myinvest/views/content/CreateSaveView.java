@@ -4,7 +4,7 @@ import com.szczepix.myinvest.enums.PeriodType;
 import com.szczepix.myinvest.enums.TargetType;
 import com.szczepix.myinvest.enums.WalletType;
 import com.szczepix.myinvest.models.WalletModel;
-import com.szczepix.myinvest.services.walletService.WalletService;
+import com.szczepix.myinvest.services.walletService.IWalletService;
 import com.szczepix.myinvest.views.FXMLView;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -38,7 +38,7 @@ public class CreateSaveView extends FXMLView {
     public ComboBox<TargetType> targetCombobox;
 
     @Autowired
-    private WalletService walletService;
+    private IWalletService walletService;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

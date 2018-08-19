@@ -26,7 +26,7 @@ public class MainViewTest extends FXMLViewTest<MainView> {
     public void initialize() {
         getView().initialize(null, null);
 
-        verify(getView().stageManager).setMainView(eq(getView()));
+        verify(getView().stageManager).setView(eq(getView()));
         verify(getView().stageManager).show(eq(ContentViewType.MENU), eq(getView().menuPane));
     }
 }
