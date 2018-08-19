@@ -4,7 +4,7 @@ import com.szczepix.myinvest.enums.ContentViewType;
 import com.szczepix.myinvest.models.WalletModel;
 import com.szczepix.myinvest.services.eventService.EventService;
 import com.szczepix.myinvest.services.walletService.IWalletService;
-import com.szczepix.myinvest.views.components.WalletItemView;
+import com.szczepix.myinvest.views.components.WalletItemComponent;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -46,7 +46,7 @@ public class WalletsView extends FXMLView {
         for (int i = 0; i < wallets.size(); i++) {
             WalletModel walletModel = wallets.get(i);
             try {
-                gridPane.add(new WalletItemView(walletModel, eventService), 0, i);
+                gridPane.add(new WalletItemComponent(walletModel, eventService).load(), 0, i);
             } catch (Exception e) {
                 System.out.println("eeee: " + e);
             }

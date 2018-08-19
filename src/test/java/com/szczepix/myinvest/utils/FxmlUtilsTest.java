@@ -1,5 +1,6 @@
 package com.szczepix.myinvest.utils;
 
+import javafx.embed.swing.JFXPanel;
 import javafx.scene.Parent;
 import javafx.scene.layout.AnchorPane;
 import org.junit.Before;
@@ -19,8 +20,11 @@ public class FxmlUtilsTest {
 
     private FxmlUtils fxmlUtils;
 
+    private JFXPanel fxPanel;
+
     @Before
     public void setUp() {
+        fxPanel = new JFXPanel();
         fxmlUtils = new FxmlUtils();
     }
 
@@ -51,7 +55,7 @@ public class FxmlUtilsTest {
     @Test(expected = RuntimeException.class)
     public void loadComponentWithException() {
         URL url = getClass().getClassLoader().getResource("x.fxml");
-        FxmlUtils.load(url, mock(AnchorPane.class));
+        FxmlUtils.load(url, new AnchorPane());
     }
 
 }

@@ -10,17 +10,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 @RunWith(MockitoJUnitRunner.class)
 public class ProfileEntityTest {
 
-    private ProfileEntity profileEntity;
+    private ProfileEntityMock profileEntity;
 
     @Before
     public void onInit() {
-        profileEntity = new ProfileEntity();
-        profileEntity.setId(1);
-        profileEntity.setMobile("mobile");
-        profileEntity.setFirstName("firstName");
-        profileEntity.setLastName("lastName");
-        profileEntity.setPassword("password");
-        profileEntity.setUserName("userName");
+        profileEntity = new ProfileEntityMock();
     }
 
     @Test
@@ -61,7 +55,7 @@ public class ProfileEntityTest {
 
     @Test
     public void checkToString() {
-        assertThat(profileEntity.toString()).isEqualTo("[ProfileEntity]:[1][firstName][lastName]");
+        assertThat(profileEntity.toString()).isEqualTo("[ProfileEntityMock]:[1][firstName][lastName]");
     }
 
     @Test
@@ -80,5 +74,17 @@ public class ProfileEntityTest {
         anotherEntity.setFirstName("firstName");
         anotherEntity.setPassword("password1");
         assertThat(anotherEntity.equals(profileEntity)).isFalse();
+    }
+
+    public static class ProfileEntityMock extends ProfileEntity {
+
+        public ProfileEntityMock() {
+            setId(1);
+            setMobile("mobile");
+            setFirstName("firstName");
+            setLastName("lastName");
+            setPassword("password");
+            setUserName("userName");
+        }
     }
 }

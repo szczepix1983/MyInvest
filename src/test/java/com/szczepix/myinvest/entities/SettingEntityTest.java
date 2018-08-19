@@ -10,19 +10,16 @@ import static org.assertj.core.api.Assertions.assertThat;
 @RunWith(MockitoJUnitRunner.class)
 public class SettingEntityTest {
 
-    private SettingEntity settingEntity;
+    private SettingEntityMock settingEntity;
 
     @Before
     public void setUp() {
-        settingEntity = new SettingEntity();
-        settingEntity.setId(1);
-        settingEntity.setResourceSyncApi("api");
-        settingEntity.setResourceSyncInterval(10);
+        settingEntity = new SettingEntityMock();
     }
 
     @Test
     public void checkToString() {
-        assertThat(settingEntity.toString()).isEqualTo("[SettingEntity]:[1]");
+        assertThat(settingEntity.toString()).isEqualTo("[SettingEntityMock]:[1]");
     }
 
     @Test
@@ -52,5 +49,14 @@ public class SettingEntityTest {
         SettingEntity anotherEntity = new SettingEntity();
         anotherEntity.setId(2);
         assertThat(anotherEntity.equals(settingEntity)).isFalse();
+    }
+
+    public static class SettingEntityMock extends SettingEntity {
+
+        public SettingEntityMock() {
+            setId(1);
+            setResourceSyncApi("api");
+            setResourceSyncInterval(10);
+        }
     }
 }

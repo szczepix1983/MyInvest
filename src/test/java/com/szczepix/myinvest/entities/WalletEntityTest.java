@@ -13,23 +13,16 @@ import static org.assertj.core.api.Assertions.assertThat;
 @RunWith(MockitoJUnitRunner.class)
 public class WalletEntityTest {
 
-    private WalletEntity walletEntity;
+    private WalletEntityMock walletEntity;
 
     @Before
     public void setUp() {
-        walletEntity = new WalletEntity();
-        walletEntity.setId(1);
-        walletEntity.setCreatedAt(100L);
-        walletEntity.setName("name");
-        walletEntity.setValue(1.10);
-        walletEntity.setWalletType(WalletType.INVESTMENT.getType());
-        walletEntity.setPeriodType(PeriodType.DAILY.getName());
-        walletEntity.setTargetType(TargetType.GOLD.getName());
+        walletEntity = new WalletEntityMock();
     }
 
     @Test
     public void checkToString() {
-        assertThat(walletEntity.toString()).isEqualTo("[WalletEntity]:[1][name]");
+        assertThat(walletEntity.toString()).isEqualTo("[WalletEntityMock]:[1][name]");
     }
 
     @Test
@@ -81,5 +74,18 @@ public class WalletEntityTest {
         anotherEntity.setId(1);
         anotherEntity.setName("name1");
         assertThat(anotherEntity.equals(walletEntity)).isFalse();
+    }
+
+    public static class WalletEntityMock extends WalletEntity {
+
+        public WalletEntityMock() {
+            setId(1);
+            setCreatedAt(100L);
+            setName("name");
+            setValue(1.10);
+            setWalletType(WalletType.INVESTMENT.getType());
+            setPeriodType(PeriodType.DAILY.getName());
+            setTargetType(TargetType.GOLD.getName());
+        }
     }
 }

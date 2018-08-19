@@ -21,7 +21,6 @@ public class FxmlUtils {
         fxmlLoader.setController(controller);
         fxmlLoader.setRoot(controller);
         fxmlLoader.setLocation(path);
-
         try {
             fxmlLoader.load();
         } catch (IOException exception) {
