@@ -14,7 +14,7 @@ public abstract class BaseComponentView extends AnchorPane implements Initializa
 
     public abstract void onInitalize();
 
-    public BaseComponentView load() {
+    public BaseComponentView load() throws Exception {
         FxmlUtils.load(path(), this);
         return this;
     }

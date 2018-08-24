@@ -9,6 +9,7 @@ import org.junit.runner.RunWith;
 import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+import java.io.IOException;
 import java.net.URL;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -44,16 +45,16 @@ public class FxmlUtilsTest {
 
     @Test
     public void loadComponent() {
-        try{
+        try {
             URL url = getClass().getClassLoader().getResource("mockItem.fxml");
             FxmlUtils.load(url, new AnchorPane());
-        } catch(RuntimeException e){
+        } catch (Exception e) {
             fail("Unexpected exception has been thrown");
         }
     }
 
-    @Test(expected = RuntimeException.class)
-    public void loadComponentWithException() {
+    @Test(expected = Exception.class)
+    public void loadComponentWithException() throws Exception {
         URL url = getClass().getClassLoader().getResource("x.fxml");
         FxmlUtils.load(url, new AnchorPane());
     }

@@ -112,8 +112,8 @@
 										<!--<exclude>*Test</exclude>-->
 									<!--</excludes>-->
 									<limits>
-										<limit>
-											<counter>LINE</counter>
+										<limit implementation="org.jacoco.report.check.Limit">
+											<counter>INSTRUCTION</counter>
 											<value>COVEREDRATIO</value>
 											<minimum>${project.test.coverage}</minimum>
 										</limit>

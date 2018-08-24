@@ -9,6 +9,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 import java.net.URL;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.fail;
 
 @RunWith(MockitoJUnitRunner.class)
 public class BaseComponentViewTest {
@@ -29,7 +30,11 @@ public class BaseComponentViewTest {
 
     @Test
     public void load() {
-        view.load();
+        try {
+            view.load();
+        } catch (Exception e) {
+            fail("Unexpected exception has been thrown");
+        }
     }
 
     @Test

@@ -42,6 +42,7 @@ public class InternalConfig {
     @Bean
     @Lazy
     public IStageManager stageManager(final Stage stage) {
-        return new StageManager(stage);
+        IStageManager stageManager = new StageManager(stage);
+        return stageManager;
     }
 }
