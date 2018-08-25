@@ -17,8 +17,11 @@ public class WalletItemComponent extends BaseComponentView {
     private final DecimalFormat decimalFormat = new DecimalFormat("#0.###");
     private final WalletModel model;
     private final EventService eventService;
+    private final String currency;
     @FXML
     public TextField nameText;
+    @FXML
+    public TextField currencyText;
     @FXML
     public TextField valueText;
     @FXML
@@ -26,9 +29,10 @@ public class WalletItemComponent extends BaseComponentView {
     @FXML
     public Button deleteButton;
 
-    public WalletItemComponent(final WalletModel model, final EventService eventService) {
+    public WalletItemComponent(final WalletModel model, final EventService eventService, final String currency) {
         this.model = model;
         this.eventService = eventService;
+        this.currency = currency;
     }
 
     @Override
@@ -40,6 +44,7 @@ public class WalletItemComponent extends BaseComponentView {
     public void onInitalize() {
         nameText.setText(model.getEntity().getName());
         valueText.setText("" + model.getEntity().getValue());
+        currencyText.setText(currency);
         setMoney(model.getMoney());
         eventService.addListener(BaseEventType.WALLET_CHANGE, this::onWalletChange);
     }

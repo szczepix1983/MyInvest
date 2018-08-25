@@ -19,20 +19,23 @@
 	</parent>
 
 	<properties>
-		<project.test.coverage>0.0</project.test.coverage>
+		<project.test.coverage>0.6</project.test.coverage>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
 		<hibernate.version>5.1.0.Final</hibernate.version>
         <lombook.version>1.18.0</lombook.version>
         <jacoco.version>0.8.1</jacoco.version>
+		<sqlite.version>3.16.1</sqlite.version>
+		<apache.httpcomponents.version>4.5.5</apache.httpcomponents.version>
+		<codehaus.jackson.version>1.9.0</codehaus.jackson.version>
 	</properties>
 
 	<dependencies>
 		<dependency>
 			<groupId>org.xerial</groupId>
 			<artifactId>sqlite-jdbc</artifactId>
-			<version>3.16.1</version>
+			<version>${sqlite.version}</version>
 		</dependency>
         <dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -56,17 +59,12 @@
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpclient</artifactId>
-			<version>4.5.5</version>
+			<version>${apache.httpcomponents.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.codehaus.jackson</groupId>
 			<artifactId>jackson-mapper-asl</artifactId>
-			<version>1.9.0</version>
-		</dependency>
-		<dependency>
-			<groupId>com.zsoltfabok</groupId>
-			<artifactId>sqlite-dialect</artifactId>
-			<version>1.0</version>
+			<version>${codehaus.jackson.version}</version>
 		</dependency>
 		<dependency>
             <groupId>org.jacoco</groupId>
@@ -86,6 +84,23 @@
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
 				<version>${jacoco.version}</version>
+				<configuration>
+					<excludes>
+						<exclude>com/szczepix/myinvest/views/**/*</exclude>
+					</excludes>
+					<rules>
+						<rule>
+							<element>PACKAGE</element>
+							<limits>
+								<limit>
+									<counter>COMPLEXITY</counter>
+									<value>COVEREDRATIO</value>
+									<minimum>${project.test.coverage}</minimum>
+								</limit>
+							</limits>
+						</rule>
+					</rules>
+				</configuration>
 				<executions>
 					<execution>
 						<goals>
@@ -100,27 +115,10 @@
 						</goals>
 					</execution>
 					<execution>
-						<id>jacoco-check</id>
+						<id>default-jacoco-check</id>
 						<goals>
 							<goal>check</goal>
 						</goals>
-						<configuration>
-							<rules>
-								<rule>
-									<element>CLASS</element>
-									<!--<excludes>-->
-										<!--<exclude>*Test</exclude>-->
-									<!--</excludes>-->
-									<limits>
-										<limit implementation="org.jacoco.report.check.Limit">
-											<counter>INSTRUCTION</counter>
-											<value>COVEREDRATIO</value>
-											<minimum>${project.test.coverage}</minimum>
-										</limit>
-									</limits>
-								</rule>
-							</rules>
-						</configuration>
 					</execution>
 				</executions>
 			</plugin>

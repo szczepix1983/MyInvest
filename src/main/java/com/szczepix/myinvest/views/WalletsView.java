@@ -3,6 +3,7 @@ package com.szczepix.myinvest.views;
 import com.szczepix.myinvest.enums.ContentViewType;
 import com.szczepix.myinvest.models.WalletModel;
 import com.szczepix.myinvest.services.eventService.EventService;
+import com.szczepix.myinvest.services.settingService.ISettingService;
 import com.szczepix.myinvest.services.walletService.IWalletService;
 import com.szczepix.myinvest.views.components.WalletItemComponent;
 import javafx.event.ActionEvent;
@@ -33,6 +34,9 @@ public class WalletsView extends FXMLView {
     @Autowired
     private EventService eventService;
 
+    @Autowired
+    private ISettingService settingService;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         enableButton(createButton, this::onCreateButton);
@@ -46,7 +50,7 @@ public class WalletsView extends FXMLView {
         for (int i = 0; i < wallets.size(); i++) {
             WalletModel walletModel = wallets.get(i);
             try {
-                gridPane.add(new WalletItemComponent(walletModel, eventService).load(), 0, i);
+                gridPane.add(new WalletItemComponent(walletModel, eventService, settingService.getSettings().getEntity().getCurrency()).load(), 0, i);
             } catch (Exception e) {
                 System.out.println("eeee: " + e);
             }

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #2D3447;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.szczepix.myinvest.views.content.SettingsView">
+   <children>
+      <Separator layoutX="12.0" layoutY="148.0" opacity="0.5" prefHeight="3.0" prefWidth="350.0" style="-fx-background-color: #a0a2ab#a0a2ab;" />
+      <Separator layoutX="14.0" layoutY="57.0" opacity="0.5" prefHeight="3.0" prefWidth="156.0" style="-fx-background-color: #a0a2ab#a0a2ab;" />
+      <Text fill="#2196f3" layoutX="17.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Settings" />
+      <Button fx:id="saveButton" alignment="CENTER" layoutX="190.0" layoutY="346.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="150.0" style="-fx-background-color: #2196f3;" text="Save" textFill="#fcf9f9" />
+      <Text fill="#a0a2ab" layoutX="26.0" layoutY="119.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Determines interval in seconds for gold and silver price updates." textAlignment="CENTER" wrappingWidth="332.0" />
+      <Text fill="#2196f3" layoutX="21.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Update resource interval:" />
+      <TextField fx:id="resourceIntervalText" alignment="CENTER" layoutX="184.0" layoutY="72.0" prefHeight="27.0" prefWidth="150.0" promptText="0.00" style="-fx-background-color: #2196f3; -fx-text-fill: #ffffff;" />
+      <Text fill="#2196f3" layoutX="91.0" layoutY="180.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Resource API:" />
+      <Text fill="#a0a2ab" layoutX="27.0" layoutY="209.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pic up one of the available API that will be used to update gold and silver prices." textAlignment="CENTER" wrappingWidth="332.0" />
+      <Separator layoutX="13.0" layoutY="237.0" opacity="0.5" prefHeight="3.0" prefWidth="350.0" style="-fx-background-color: #a0a2ab#a0a2ab;" />
+      <ComboBox fx:id="resourceApiCombobox" layoutX="184.0" layoutY="162.0" prefHeight="27.0" prefWidth="150.0" promptText="Select" style="-fx-background-color: #2196f3; -fx-text-fill: #ffffff;" />
+      <ComboBox fx:id="currencyCombobox" layoutX="186.0" layoutY="251.0" prefHeight="27.0" prefWidth="150.0" promptText="Select" style="-fx-background-color: #2196f3; -fx-text-fill: #ffffff;" />
+      <Separator layoutX="165.0" layoutY="327.0" opacity="0.5" prefHeight="3.0" prefWidth="200.0" style="-fx-background-color: #a0a2ab#a0a2ab;" />
+      <Text fill="#a0a2ab" layoutX="29.0" layoutY="298.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select your local currency to use it for getting proper gold and silver prices." textAlignment="CENTER" wrappingWidth="332.0" />
+      <Text fill="#2196f3" layoutX="116.0" layoutY="269.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Currency:" />
+   </children>
+</AnchorPane>

@@ -21,16 +21,22 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = InternalConfigTest.InternalConfigTestConfiguration.class)
-@TestPropertySource(locations = {"classpath:test.properties"})
+@TestPropertySource(locations = {"classpath:internal.properties"})
 public class InternalConfigTest {
 
     @Autowired
-    private InternalConfig config;
+    private IInternalConfig config;
 
     @Test
-    public void getValue() {
-        assertThat(config.getValue("internal.value")).isNotNull();
-        assertThat(config.getValue("internal.value")).isEqualTo("My internal test");
+    public void getDefaultCurrency() {
+        assertThat(config.getDefaultCurrency()).isNotNull();
+        assertThat(config.getDefaultCurrency()).isNotEmpty();
+    }
+
+    @Test
+    public void getDefaultResourceInterval() {
+        assertThat(config.getDefaultResourceInterval()).isNotNull();
+        assertThat(config.getDefaultResourceInterval()).isGreaterThan(0);
     }
 
     @Test
@@ -74,7 +80,7 @@ public class InternalConfigTest {
         }
 
         @Bean
-        public InternalConfig config() {
+        public IInternalConfig config() {
             return new InternalConfig();
         }
     }

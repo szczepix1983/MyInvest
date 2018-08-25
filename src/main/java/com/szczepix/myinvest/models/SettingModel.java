@@ -1,6 +1,7 @@
 package com.szczepix.myinvest.models;
 
 import com.szczepix.myinvest.entities.SettingEntity;
+import com.szczepix.myinvest.enums.ResourceApiType;
 import com.szczepix.myinvest.services.requestService.goldprice.GoldPriceRatesResponse;
 import lombok.Getter;
 
@@ -17,5 +18,14 @@ public class SettingModel {
 
     public void update(GoldPriceRatesResponse response) {
         resourceContent = response;
+    }
+
+    public ResourceApiType getResourceApiType() {
+        ResourceApiType[] types = ResourceApiType.class.getEnumConstants();
+        for (ResourceApiType type : types) {
+            if (type.getUrl().equals(entity.getResourceSyncApi()))
+                return type;
+        }
+        throw new RuntimeException("Can't find resource api type " + this);
     }
 }

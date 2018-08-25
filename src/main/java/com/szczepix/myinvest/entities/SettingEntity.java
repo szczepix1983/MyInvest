@@ -18,6 +18,7 @@ public class SettingEntity extends BaseEntity {
 
     private String resourceSyncApi;
     private Integer resourceSyncInterval;
+    private String currency;
 
     @Override
     public boolean equals(Object obj) {

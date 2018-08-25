@@ -1,6 +1,7 @@
 package com.szczepix.myinvest.utils;
 
 import com.szczepix.myinvest.enums.PeriodType;
+import org.assertj.core.data.Offset;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -41,12 +42,12 @@ public class MathUtilsTest {
     @Test
     public void timeSpend() {
         long startTime = System.currentTimeMillis() - PeriodType.DAILY.getSeconds() * 1000;
-        assertThat(MathUtils.timeSpend(startTime)).isEqualTo(PeriodType.DAILY.getSeconds() * 1000);
+        assertThat(MathUtils.timeSpend(startTime)).isCloseTo(PeriodType.DAILY.getSeconds() * 1000, Offset.offset(1L));
 
         startTime = System.currentTimeMillis() - (PeriodType.DAILY.getSeconds() * 1000) / 2;
-        assertThat(MathUtils.timeSpend(startTime)).isEqualTo((PeriodType.DAILY.getSeconds() * 1000) / 2);
+        assertThat(MathUtils.timeSpend(startTime)).isCloseTo((PeriodType.DAILY.getSeconds() * 1000) / 2, Offset.offset(1L));
 
         startTime = System.currentTimeMillis() - (PeriodType.DAILY.getSeconds() * 1000) / 10;
-        assertThat(MathUtils.timeSpend(startTime)).isEqualTo((PeriodType.DAILY.getSeconds() * 1000) / 10);
+        assertThat(MathUtils.timeSpend(startTime)).isCloseTo((PeriodType.DAILY.getSeconds() * 1000) / 10, Offset.offset(1L));
     }
 }

@@ -1,6 +1,7 @@
 package com.szczepix.myinvest.models;
 
 import com.szczepix.myinvest.entities.SettingEntity;
+import com.szczepix.myinvest.enums.ResourceApiType;
 import com.szczepix.myinvest.services.requestService.goldprice.GoldPriceRatesResponse;
 import org.junit.Before;
 import org.junit.Test;
@@ -39,5 +40,20 @@ public class SettingModelTest {
         assertThat(settingModel.getResourceContent()).isNull();
         settingModel.update(Mockito.mock(GoldPriceRatesResponse.class));
         assertThat(settingModel.getResourceContent()).isNotNull();
+    }
+
+    @Test
+    public void getResourceApiType() {
+        ResourceApiType[] types = ResourceApiType.class.getEnumConstants();
+        for (ResourceApiType type : types) {
+            settingModel.getEntity().setResourceSyncApi(type.getUrl());
+            assertThat(settingModel.getResourceApiType()).isEqualTo(type);
+        }
+    }
+
+    @Test(expected = RuntimeException.class)
+    public void getWrongPeriodType() {
+        settingModel.getEntity().setResourceSyncApi("");
+        settingModel.getResourceApiType();
     }
 }

@@ -1,20 +1,16 @@
 package com.szczepix.myinvest.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
-import org.springframework.core.env.Environment;
-import org.springframework.stereotype.Component;
 
-@Configuration
+import java.util.Arrays;
+import java.util.List;
+
 @PropertySource("classpath:external.properties")
-public class ExternalConfig {
+public class ExternalConfig extends AppConfig implements IExternalConfig {
 
-    @Autowired
-    private Environment env;
-
-    public String getValue(final String valueName) {
-        return env.getProperty(valueName);
+    @Override
+    public List<String> getCurrencies() {
+        return Arrays.asList(getValue("external.currencies").split(","));
     }
 }
 

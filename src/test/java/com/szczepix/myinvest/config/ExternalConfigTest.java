@@ -13,23 +13,23 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = ExternalConfigTest.ExternalConfigTestConfiguration.class)
-@TestPropertySource(locations = {"classpath:test.properties"})
+@TestPropertySource(locations = {"classpath:external.properties"})
 public class ExternalConfigTest {
 
     @Autowired
-    private ExternalConfig config;
+    private IExternalConfig config;
 
     @Test
-    public void getValue() {
-        assertThat(config.getValue("external.value")).isNotNull();
-        assertThat(config.getValue("external.value")).isEqualTo("My external test");
+    public void getCurrencies() {
+        assertThat(config.getCurrencies()).isNotNull();
+        assertThat(config.getCurrencies().size()).isEqualTo(1);
     }
 
     @Configuration
     static class ExternalConfigTestConfiguration {
 
         @Bean
-        public ExternalConfig config() {
+        public IExternalConfig config() {
             return new ExternalConfig();
         }
     }

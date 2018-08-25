@@ -16,5 +16,6 @@
       <Separator layoutX="17.0" layoutY="49.0" opacity="0.5" prefHeight="3.0" prefWidth="326.0" style="-fx-background-color: #a0a2ab#a0a2ab;" />
       <TextField fx:id="nameText" alignment="CENTER" editable="false" layoutX="18.0" layoutY="12.0" prefHeight="27.0" prefWidth="133.0" style="-fx-background-color: #2D3447; -fx-text-fill: #2196f3;" text="0" />
       <TextField fx:id="moneyText" alignment="CENTER" editable="false" layoutX="227.0" layoutY="12.0" prefHeight="27.0" prefWidth="71.0" style="-fx-background-color: #2196f3; -fx-text-fill: #ffffff;" text="0" />
+      <TextField fx:id="currencyText" alignment="CENTER" editable="false" layoutX="305.0" layoutY="12.0" prefHeight="27.0" prefWidth="45.0" style="-fx-background-color: #a0a2ab#a0a2ab; -fx-text-fill: #ffffff;" text="EUR" />
    </children>
 </fx:root>

@@ -20,11 +20,14 @@ public class MenuView extends FXMLView {
     public Button profileButton;
     @FXML
     public Button walletsButton;
+    @FXML
+    public Button settingsButton;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         enableButton(profileButton, this::handleProfileButton);
         enableButton(walletsButton, this::handleWalletsButton);
+        enableButton(settingsButton, this::handleSettingsButton);
     }
 
     protected void handleProfileButton(ActionEvent actionEvent) {
@@ -33,5 +36,9 @@ public class MenuView extends FXMLView {
 
     protected void handleWalletsButton(ActionEvent actionEvent) {
         stageManager.show(ContentViewType.WALLETS, stageManager.getView().contentPane);
+    }
+
+    protected void handleSettingsButton(ActionEvent actionEvent) {
+        stageManager.show(ContentViewType.SETTINGS, stageManager.getView().contentPane);
     }
 }

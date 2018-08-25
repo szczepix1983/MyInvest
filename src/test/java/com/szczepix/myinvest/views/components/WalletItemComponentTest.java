@@ -66,8 +66,8 @@ public class WalletItemComponentTest {
 
         private double money;
 
-        public WalletItemComponentMock(WalletModel model, EventService eventService) {
-            super(model, eventService);
+        public WalletItemComponentMock(final WalletModel model, final EventService eventService) {
+            super(model, eventService, "PLN");
         }
 
         @Override
@@ -75,6 +75,7 @@ public class WalletItemComponentTest {
             nameText = new TextField();
             valueText = new TextField();
             moneyText = new TextField();
+            currencyText = new TextField();
             deleteButton = new Button();
             super.onInitalize();
         }

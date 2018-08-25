@@ -5,5 +5,8 @@ import com.szczepix.myinvest.models.SettingModel;
 public interface ISettingService {
 
     void init();
+
     SettingModel getSettings();
+
+    void save();
 }

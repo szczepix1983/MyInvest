@@ -38,6 +38,11 @@ public class SettingEntityTest {
     }
 
     @Test
+    public void getCurrency() {
+        assertThat(settingEntity.getCurrency()).isEqualTo("USD");
+    }
+
+    @Test
     public void checkIsEqual() {
         SettingEntity anotherEntity = new SettingEntity();
         anotherEntity.setId(1);
@@ -56,6 +61,7 @@ public class SettingEntityTest {
         public SettingEntityMock() {
             setId(1);
             setResourceSyncApi("api");
+            setCurrency("USD");
             setResourceSyncInterval(10);
         }
     }
