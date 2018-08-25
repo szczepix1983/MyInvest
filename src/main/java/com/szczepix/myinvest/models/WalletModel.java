@@ -7,6 +7,8 @@ import com.szczepix.myinvest.events.WalletChangeEvent;
 import com.szczepix.myinvest.services.eventService.EventService;
 import lombok.Getter;
 
+import java.util.TreeMap;
+
 public class WalletModel {
 
     @Getter
@@ -15,7 +17,7 @@ public class WalletModel {
     private final EventService eventService;
 
     @Getter
-    private double money = 0.0;
+    private WalletStats stats = new WalletStats();
 
     private WalletChangeEvent changeEvent = new WalletChangeEvent(this);
 
@@ -42,10 +44,16 @@ public class WalletModel {
         throw new RuntimeException("Can't find target type for wallet " + this);
     }
 
-    public void setMoney(final double money) {
-        if (this.money != money) {
-            this.money = money;
-            eventService.dispatch(changeEvent);
+    public void setStats(final WalletStats stats) {
+        this.stats = stats;
+        eventService.dispatch(changeEvent);
+    }
+
+    public static class WalletStats extends TreeMap<String, Double> {
+
+        public WalletStats(){
+            put("money", 0.0);
+            put("percentage", 0.0);
         }
     }
 }

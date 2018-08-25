@@ -8,12 +8,12 @@ import com.szczepix.myinvest.utils.MathUtils;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class UpdateGoldJob extends BaseJob {
+public class UpdateSilverJob extends BaseJob {
 
     private final WalletModel model;
     private final IMarketService marketService;
 
-    public UpdateGoldJob(final WalletModel model, final IMarketService marketService, final Integer fixedTime) {
+    public UpdateSilverJob(final WalletModel model, final IMarketService marketService, final Integer fixedTime) {
         super(new AtomicInteger(fixedTime));
         this.model = model;
         this.marketService = marketService;
@@ -26,10 +26,10 @@ public class UpdateGoldJob extends BaseJob {
     }
 
     private void updateStats() {
-        if (marketService.getGoldPrice().isPresent()) {
+        if (marketService.getSilverPrice().isPresent()) {
             WalletModel.WalletStats stats = model.getStats();
             final double money = MathUtils.calculateMoney(model.getEntity().getCreatedAt(), model.getEntity().getValue(), model.getPeriodType());
-            final double percentage = Math.min((money / marketService.getGoldPrice().get().getValue()) * 100, 100);
+            final double percentage = Math.min((money / marketService.getSilverPrice().get().getValue()) * 100, 100);
             stats.put("money", money);
             stats.put("percentage", percentage);
             model.setStats(stats);

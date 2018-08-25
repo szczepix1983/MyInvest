@@ -5,10 +5,12 @@ import com.szczepix.myinvest.enums.TargetType;
 import com.szczepix.myinvest.jobs.sync.ResourceSyncJob;
 import com.szczepix.myinvest.jobs.wallets.UpdateGoldJob;
 import com.szczepix.myinvest.jobs.wallets.UpdateMoneyJob;
+import com.szczepix.myinvest.jobs.wallets.UpdateSilverJob;
 import com.szczepix.myinvest.models.SettingModel;
 import com.szczepix.myinvest.models.WalletModel;
 import com.szczepix.myinvest.services.futureService.FutureService;
-import com.szczepix.myinvest.services.requestService.RequestService;
+import com.szczepix.myinvest.services.marketService.IMarketService;
+import com.szczepix.myinvest.services.requestService.IRequestService;
 import com.szczepix.myinvest.services.schedulerService.SchedulerService;
 import com.szczepix.myinvest.services.settingService.SettingCache;
 import org.junit.After;
@@ -68,7 +70,7 @@ public class JobFactoryTest {
         when(model.getTargetType()).thenReturn(TargetType.SILVER);
 
         jobFactory.createWalletJob(model);
-//        verify(schedulerService).addJob(any(UpdateGoldJob.class));
+        verify(schedulerService).addJob(any(UpdateSilverJob.class));
     }
 
     @Test
@@ -87,12 +89,17 @@ public class JobFactoryTest {
 
         @Bean
         public JobFactory jobFactory() {
-            return new JobFactory(requestService(), schedulerService());
+            return new JobFactory(requestService(), schedulerService(), marketService());
         }
 
         @Bean
-        public RequestService requestService() {
-            return mock(RequestService.class);
+        public IRequestService requestService() {
+            return mock(IRequestService.class);
+        }
+
+        @Bean
+        public IMarketService marketService() {
+            return mock(IMarketService.class);
         }
 
         @Bean

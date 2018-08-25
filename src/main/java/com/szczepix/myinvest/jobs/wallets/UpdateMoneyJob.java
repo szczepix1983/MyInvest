@@ -6,11 +6,8 @@ import com.szczepix.myinvest.services.futureService.IFuture;
 import com.szczepix.myinvest.utils.MathUtils;
 
 import java.util.concurrent.atomic.AtomicInteger;
-import java.util.logging.Logger;
 
 public class UpdateMoneyJob extends BaseJob {
-
-    private final Logger LOG = Logger.getLogger(getClass().getName());
 
     private final WalletModel model;
 
@@ -21,13 +18,13 @@ public class UpdateMoneyJob extends BaseJob {
 
     @Override
     public IFuture submit() throws Exception {
-        LOG.info("MONEY: " + getMoney());
-        model.setMoney(getMoney());
-
+        updateStats();
         return super.submit();
     }
 
-    private double getMoney() {
-        return MathUtils.calculateMoney(model.getEntity().getCreatedAt(), model.getEntity().getValue(), model.getPeriodType());
+    private void updateStats() {
+        WalletModel.WalletStats stats = model.getStats();
+        stats.put("money", MathUtils.calculateMoney(model.getEntity().getCreatedAt(), model.getEntity().getValue(), model.getPeriodType()));
+        model.setStats(stats);
     }
 }

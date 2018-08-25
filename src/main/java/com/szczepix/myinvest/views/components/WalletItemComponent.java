@@ -45,14 +45,14 @@ public class WalletItemComponent extends BaseComponentView {
         nameText.setText(model.getEntity().getName());
         valueText.setText("" + model.getEntity().getValue());
         currencyText.setText(currency);
-        setMoney(model.getMoney());
+        setMoney(model.getStats().get("money"));
         eventService.addListener(BaseEventType.WALLET_CHANGE, this::onWalletChange);
     }
 
     public void onWalletChange(BaseEvent baseEvent) {
         WalletChangeEvent event = (WalletChangeEvent) baseEvent;
         if (event.getModel().equals(model)) {
-            setMoney(model.getMoney());
+            setMoney(model.getStats().get("money"));
         }
     }
 

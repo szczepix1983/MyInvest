@@ -38,7 +38,7 @@ public class WalletItemComponentTest {
         view.initialize(null, null);
         Thread.sleep(1000);
         verify(eventService, times(1)).addListener(eq(BaseEventType.WALLET_CHANGE), any());
-        assertThat(view.money).isEqualTo(model.getMoney());
+        assertThat(view.money).isEqualTo(model.getStats().get("money"));
     }
 
     @Test
@@ -48,18 +48,18 @@ public class WalletItemComponentTest {
 
     @Test
     public void onSameWalletChange() {
-        model.setMoney(10.0);
+        model.getStats().put("money", 10.0);
         view.onWalletChange(new WalletChangeEvent(model));
-        assertThat(view.money).isEqualTo(model.getMoney());
+        assertThat(view.money).isEqualTo(model.getStats().get("money"));
     }
 
     @Test
     public void onDifferentWalletChange() {
-        model.setMoney(10.0);
+        model.getStats().put("money", 10.0);
         view.onWalletChange(new WalletChangeEvent(model));
         WalletModel newModel = new WalletModel(new WalletEntityTest.WalletEntityMock(), eventService);
         view.onWalletChange(new WalletChangeEvent(newModel));
-        assertThat(view.money).isEqualTo(model.getMoney());
+        assertThat(view.money).isEqualTo(model.getStats().get("money"));
     }
 
     static class WalletItemComponentMock extends WalletItemComponent {

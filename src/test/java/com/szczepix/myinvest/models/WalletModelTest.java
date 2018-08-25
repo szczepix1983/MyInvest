@@ -29,7 +29,8 @@ public class WalletModelTest {
         entity.setName("");
         entity.setPeriodType(PeriodType.MONTHLY.getName());
         walletModel = new WalletModel(entity, eventService);
-        walletModel.setMoney(20.0);
+        walletModel.getStats().put("money", 20.0);
+        walletModel.setStats(walletModel.getStats());
     }
 
     @Test
@@ -75,6 +76,6 @@ public class WalletModelTest {
 
     @Test
     public void getMoney() {
-        assertThat(walletModel.getMoney()).isEqualTo(20.0);
+        assertThat(walletModel.getStats().get("money")).isEqualTo(20.0);
     }
 }

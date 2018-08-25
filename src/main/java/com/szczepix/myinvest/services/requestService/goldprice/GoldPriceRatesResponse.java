@@ -14,7 +14,7 @@ public class GoldPriceRatesResponse extends BaseResponse {
     public GoldPriceRatesResponse() {
     }
 
-    static class GoldPriceItem {
+    public static class GoldPriceItem {
         public String curr;
         public double xauPrice;
         public double xagPrice;

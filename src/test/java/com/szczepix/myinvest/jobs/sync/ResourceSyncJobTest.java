@@ -2,6 +2,7 @@ package com.szczepix.myinvest.jobs.sync;
 
 import com.szczepix.myinvest.entities.SettingEntity;
 import com.szczepix.myinvest.models.SettingModel;
+import com.szczepix.myinvest.services.marketService.IMarketService;
 import com.szczepix.myinvest.services.requestService.IRequestService;
 import com.szczepix.myinvest.services.requestService.goldprice.GoldPriceRatesResponse;
 import org.junit.Before;
@@ -18,15 +19,17 @@ public class ResourceSyncJobTest {
     private SettingModel model;
     private SettingEntity entity;
     private IRequestService requestService;
+    private IMarketService marketService;
 
     @Before
     public void setUp() {
         requestService = mock(IRequestService.class);
+        marketService = mock(IMarketService.class);
         entity = mock(SettingEntity.class);
         model = mock(SettingModel.class);
         when(model.getEntity()).thenReturn(entity);
 
-        job = new ResourceSyncJob(requestService, model);
+        job = new ResourceSyncJob(requestService, marketService, model);
     }
 
     @Test
@@ -39,6 +42,6 @@ public class ResourceSyncJobTest {
     public void onComplete() {
         GoldPriceRatesResponse response = mock(GoldPriceRatesResponse.class);
         job.onComplete(response);
-        verify(model, times(1)).update(eq(response));
+        verify(marketService, times(1)).update(eq(response), anyString());
     }
 }

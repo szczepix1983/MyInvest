@@ -2,11 +2,9 @@ package com.szczepix.myinvest.models;
 
 import com.szczepix.myinvest.entities.SettingEntity;
 import com.szczepix.myinvest.enums.ResourceApiType;
-import com.szczepix.myinvest.services.requestService.goldprice.GoldPriceRatesResponse;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -33,13 +31,6 @@ public class SettingModelTest {
     @Test
     public void getEntity() {
         assertThat(settingModel.getEntity()).isNotNull();
-    }
-
-    @Test
-    public void update() {
-        assertThat(settingModel.getResourceContent()).isNull();
-        settingModel.update(Mockito.mock(GoldPriceRatesResponse.class));
-        assertThat(settingModel.getResourceContent()).isNotNull();
     }
 
     @Test

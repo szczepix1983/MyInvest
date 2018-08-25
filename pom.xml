@@ -11,6 +11,17 @@
 	<name>My Invest</name>
 	<description>Application for saves and investment</description>
 
+	<developers>
+		<developer>
+			<id>szczepix</id>
+			<name>Szczepan Martyniuk</name>
+			<email>szczepan.martyniuk@gmail.com</email>
+			<roles>
+				<role>developer</role>
+			</roles>
+		</developer>
+	</developers>
+
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
