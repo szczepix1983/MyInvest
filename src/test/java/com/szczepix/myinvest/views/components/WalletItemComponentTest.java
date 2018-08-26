@@ -7,6 +7,7 @@ import com.szczepix.myinvest.models.WalletModel;
 import com.szczepix.myinvest.services.eventService.EventService;
 import javafx.embed.swing.JFXPanel;
 import javafx.scene.control.Button;
+import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.TextField;
 import org.junit.Before;
 import org.junit.Test;
@@ -76,7 +77,9 @@ public class WalletItemComponentTest {
             valueText = new TextField();
             moneyText = new TextField();
             currencyText = new TextField();
-            deleteButton = new Button();
+            detailsButton = new Button();
+            percentageIndicator = new ProgressIndicator();
+            percentageText = new TextField();
             super.onInitalize();
         }
 

@@ -4,8 +4,10 @@ import com.szczepix.myinvest.config.IInternalConfig;
 import com.szczepix.myinvest.dao.ISettingRepository;
 import com.szczepix.myinvest.entities.SettingEntity;
 import com.szczepix.myinvest.enums.ResourceApiType;
+import com.szczepix.myinvest.events.SettingsChangeEvent;
 import com.szczepix.myinvest.jobs.IJobFactory;
 import com.szczepix.myinvest.models.SettingModel;
+import com.szczepix.myinvest.services.eventService.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
@@ -26,13 +28,15 @@ public class SettingService implements ISettingService {
     private final SettingCache cache;
     private final IJobFactory jobFactory;
     private final IInternalConfig config;
+    private final EventService eventService;
 
     @Autowired
-    public SettingService(final ISettingRepository repository, final SettingCache cache, final IJobFactory jobFactory, final IInternalConfig config) {
+    public SettingService(final ISettingRepository repository, final SettingCache cache, final IJobFactory jobFactory, final IInternalConfig config, final EventService eventService) {
         this.repository = repository;
         this.cache = cache;
         this.jobFactory = jobFactory;
         this.config = config;
+        this.eventService = eventService;
     }
 
     @PostConstruct
@@ -71,6 +75,7 @@ public class SettingService implements ISettingService {
     @Override
     public void save() {
         repository.save(getSettings().getEntity());
+        eventService.dispatch(new SettingsChangeEvent(getSettings().getEntity().getCurrency()));
     }
 
 }

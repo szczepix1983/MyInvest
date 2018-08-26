@@ -1,5 +1,6 @@
 package com.szczepix.myinvest.services.marketService;
 
+import com.szczepix.myinvest.services.eventService.EventService;
 import com.szczepix.myinvest.services.requestService.goldprice.GoldPriceRatesResponse;
 import org.junit.Before;
 import org.junit.Test;
@@ -16,6 +17,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.mock;
 
 @ContextConfiguration(classes = MarketServiceTest.MarketServiceTestConfiguration.class)
 @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
@@ -102,6 +104,11 @@ public class MarketServiceTest {
 
     @Configuration
     static class MarketServiceTestConfiguration {
+
+        @Bean
+        public EventService eventService() {
+            return mock(EventService.class);
+        }
 
         @Bean
         public IMarketService getMarketService() {

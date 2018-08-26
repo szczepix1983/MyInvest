@@ -7,6 +7,8 @@ public enum BaseEventType {
 
     MOCK("TEST_EVENT"),
     VIEW_CHANGE("VIEW_CHANGE"),
+    MARKET_CHANGE("MARKET_CHANGE"),
+    SETTINGS_CHANGE("SETTINGS_CHANGE"),
     WALLET_CHANGE("WALLET_CHANGE");
 
     String name;

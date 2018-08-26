@@ -52,7 +52,7 @@ public class WalletEntityTest {
 
     @Test
     public void getTargetType() {
-        assertThat(walletEntity.getTargetType()).isEqualTo(TargetType.GOLD.getName());
+        assertThat(walletEntity.getTargetType()).isEqualTo(TargetType.MONEY.getName());
     }
 
     @Test
@@ -85,7 +85,7 @@ public class WalletEntityTest {
             setValue(1.10);
             setWalletType(WalletType.INVESTMENT.getType());
             setPeriodType(PeriodType.DAILY.getName());
-            setTargetType(TargetType.GOLD.getName());
+            setTargetType(TargetType.MONEY.getName());
         }
     }
 }

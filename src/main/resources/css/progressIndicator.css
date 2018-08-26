@@ -1,0 +1,8 @@
+.percentageIndicator .percentage {
+    -fx-fill: null ;
+}
+
+.percentageIndicator {
+    -fx-padding: 0 0 -16 0 ;
+    -fx-progress-color: #2196f3 ;
+}

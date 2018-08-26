@@ -4,8 +4,10 @@ import com.szczepix.myinvest.config.IInternalConfig;
 import com.szczepix.myinvest.dao.ISettingRepository;
 import com.szczepix.myinvest.entities.SettingEntity;
 import com.szczepix.myinvest.entities.SettingEntityTest;
+import com.szczepix.myinvest.events.SettingsChangeEvent;
 import com.szczepix.myinvest.jobs.IJobFactory;
 import com.szczepix.myinvest.models.SettingModel;
+import com.szczepix.myinvest.services.eventService.EventService;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -37,6 +39,9 @@ public class SettingServiceTest {
     @Autowired
     private SettingCache cache;
 
+    @Autowired
+    private EventService eventService;
+
     @Before
     public void setUp() {
         when(cache.getById(1)).thenReturn(createSettingsMock());
@@ -62,6 +67,7 @@ public class SettingServiceTest {
     public void save() {
         settingService.save();
         verify(repository, atLeast(1)).save(any(SettingEntity.class));
+        verify(eventService, atLeast(1)).dispatch(any(SettingsChangeEvent.class));
     }
 
     private SettingModel createSettingsMock() {
@@ -85,7 +91,7 @@ public class SettingServiceTest {
 
         @Bean
         public ISettingService settingService() {
-            return new SettingService(repository(), cache(), jobFactory(), config());
+            return new SettingService(repository(), cache(), jobFactory(), config(), eventService());
         }
 
         @Bean
@@ -98,6 +104,11 @@ public class SettingServiceTest {
         @Bean
         public IJobFactory jobFactory() {
             return mock(IJobFactory.class);
+        }
+
+        @Bean
+        public EventService eventService() {
+            return mock(EventService.class);
         }
     }
 }

@@ -6,13 +6,13 @@ import com.szczepix.myinvest.services.eventService.BaseEvent;
 import lombok.Getter;
 
 @Getter
-public class WalletChangeEvent extends BaseEvent {
+public class SettingsChangeEvent extends BaseEvent {
 
-    private final WalletModel model;
+    private final String currency;
 
-    public WalletChangeEvent(final WalletModel model) {
-        super(BaseEventType.WALLET_CHANGE);
-        this.model = model;
+    public SettingsChangeEvent(final String currency) {
+        super(BaseEventType.SETTINGS_CHANGE);
+        this.currency = currency;
     }
 }
 
