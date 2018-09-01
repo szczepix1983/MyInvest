@@ -31,6 +31,7 @@ public class UpdateMoneyJobTest {
 
         model = new WalletModel(entity, mock(EventService.class));
         model.getStats().put("money", 0.0);
+        model.getStats().put("percentage", 0.0);
 
         job = new UpdateMoneyJob(model, 5);
     }
@@ -39,6 +40,7 @@ public class UpdateMoneyJobTest {
     public void submit() throws Exception {
         job.submit();
         assertThat(model.getStats().get("money")).isEqualTo(41.6, Offset.offset(0.1));
+        assertThat(model.getStats().get("percentage")).isCloseTo(0.138, Offset.offset(0.001));
     }
 
 }

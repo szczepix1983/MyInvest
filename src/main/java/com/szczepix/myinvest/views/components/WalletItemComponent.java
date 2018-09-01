@@ -1,12 +1,12 @@
 package com.szczepix.myinvest.views.components;
 
 import com.szczepix.myinvest.enums.BaseEventType;
-import com.szczepix.myinvest.enums.TargetType;
 import com.szczepix.myinvest.events.WalletChangeEvent;
 import com.szczepix.myinvest.models.WalletModel;
 import com.szczepix.myinvest.services.eventService.BaseEvent;
 import com.szczepix.myinvest.services.eventService.EventService;
 import com.szczepix.myinvest.utils.DecimalUtils;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ProgressIndicator;
@@ -51,24 +51,21 @@ public class WalletItemComponent extends BaseComponentView {
         valueText.setText("" + model.getEntity().getValue());
         currencyText.setText(currency);
         setMoney(model.getStats().get("money"));
-        if (model.getTargetType().equals(TargetType.SILVER) || model.getTargetType().equals(TargetType.GOLD)) {
-            setPercentage(model.getStats().get("percentage"));
-        } else {
-            percentageIndicator.setVisible(false);
-        }
+        setPercentage(model.getStats().get("percentage"));
         eventService.addListener(BaseEventType.WALLET_CHANGE, this::onWalletChange);
 
-        //todo - initilize buttons later
-        detailsButton.setDisable(true);
+        enableButton(detailsButton, this::onDetailsButton);
+    }
+
+    private void onDetailsButton(ActionEvent event) {
+
     }
 
     public void onWalletChange(BaseEvent baseEvent) {
         WalletChangeEvent event = (WalletChangeEvent) baseEvent;
         if (event.getModel().equals(model)) {
             setMoney(model.getStats().get("money"));
-            if (model.getTargetType().equals(TargetType.SILVER) || model.getTargetType().equals(TargetType.GOLD)) {
-                setPercentage(model.getStats().get("percentage"));
-            }
+            setPercentage(model.getStats().get("percentage"));
         }
     }
 

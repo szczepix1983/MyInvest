@@ -50,22 +50,27 @@ public class WalletItemComponentTest {
     @Test
     public void onSameWalletChange() {
         model.getStats().put("money", 10.0);
+        model.getStats().put("percentage", 10.0);
         view.onWalletChange(new WalletChangeEvent(model));
         assertThat(view.money).isEqualTo(model.getStats().get("money"));
+        assertThat(view.percentage).isEqualTo(model.getStats().get("percentage"));
     }
 
     @Test
     public void onDifferentWalletChange() {
         model.getStats().put("money", 10.0);
+        model.getStats().put("percentage", 10.0);
         view.onWalletChange(new WalletChangeEvent(model));
         WalletModel newModel = new WalletModel(new WalletEntityTest.WalletEntityMock(), eventService);
         view.onWalletChange(new WalletChangeEvent(newModel));
         assertThat(view.money).isEqualTo(model.getStats().get("money"));
+        assertThat(view.percentage).isEqualTo(model.getStats().get("percentage"));
     }
 
     static class WalletItemComponentMock extends WalletItemComponent {
 
         private double money;
+        private double percentage;
 
         public WalletItemComponentMock(final WalletModel model, final EventService eventService) {
             super(model, eventService, "PLN");
@@ -87,6 +92,9 @@ public class WalletItemComponentTest {
         protected void setMoney(final double money) {
             this.money = money;
         }
+
+        @Override
+        protected void setPercentage(final double percentage) { this.percentage = percentage; }
     }
 
 }

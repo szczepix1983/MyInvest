@@ -24,7 +24,10 @@ public class UpdateMoneyJob extends BaseJob {
 
     private void updateStats() {
         WalletModel.WalletStats stats = model.getStats();
-        stats.put("money", MathUtils.calculateMoney(model.getEntity().getCreatedAt(), model.getEntity().getValue(), model.getPeriodType()));
+        final double money = MathUtils.calculateMoney(model.getEntity().getCreatedAt(), model.getEntity().getValue(), model.getPeriodType());
+        final double percentage = MathUtils.calculatePercentage(model.getEntity().getCreatedAt(), model.getEntity().getValue(), model.getPeriodType());
+        stats.put("money", money);
+        stats.put("percentage", percentage);
         model.setStats(stats);
     }
 }

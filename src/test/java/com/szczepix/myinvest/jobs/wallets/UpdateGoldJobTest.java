@@ -37,6 +37,7 @@ public class UpdateGoldJobTest {
 
         model = new WalletModel(entity, mock(EventService.class));
         model.getStats().put("money", 0.0);
+        model.getStats().put("percentage", 0.0);
 
         job = new UpdateGoldJob(model, marketService, 5);
     }
@@ -46,6 +47,7 @@ public class UpdateGoldJobTest {
         when(marketService.getGoldPrice()).thenReturn(Optional.empty());
         job.submit();
         assertThat(model.getStats().get("money")).isEqualTo(0);
+        assertThat(model.getStats().get("percentage")).isEqualTo(0);
     }
 
     @Test
@@ -53,6 +55,7 @@ public class UpdateGoldJobTest {
         when(marketService.getGoldPrice()).thenReturn(createItem("USD"));
         job.submit();
         assertThat(model.getStats().get("money")).isEqualTo(41.6, Offset.offset(0.1));
+        assertThat(model.getStats().get("percentage")).isCloseTo(41.6, Offset.offset(0.1));
     }
 
     private Optional<MarketItem> createItem(String currency) {
