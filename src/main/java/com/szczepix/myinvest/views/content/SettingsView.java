@@ -117,7 +117,7 @@ public class SettingsView extends FXMLView {
             settingService.getSettings().getEntity().setResourceSyncInterval(Integer.parseInt(resourceIntervalText.getText()));
             settingService.save();
         } catch (Exception e) {
-            System.out.println("aaaaaaaaaa " + e);
+            System.out.println("Saving Error: " + e);
         }
     }
 

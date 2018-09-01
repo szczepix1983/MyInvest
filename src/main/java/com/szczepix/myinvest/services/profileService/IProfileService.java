@@ -11,4 +11,8 @@ public interface IProfileService {
     ProfileModel findProfileByUserNameAndPassword(String username, String password);
 
     List<ProfileModel> getProfiles();
+
+    ProfileModel getProfile();
+
+    void save(final ProfileModel model);
 }

@@ -16,6 +16,8 @@ import javafx.scene.control.TextField;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.awt.*;
+import java.net.URI;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -28,6 +30,8 @@ public class MenuView extends FXMLView {
     public Button walletsButton;
     @FXML
     public Button settingsButton;
+    @FXML
+    public Button licenseButton;
     @FXML
     public TextField goldPriceText;
     @FXML
@@ -48,6 +52,7 @@ public class MenuView extends FXMLView {
         enableButton(profileButton, this::handleProfileButton);
         enableButton(walletsButton, this::handleWalletsButton);
         enableButton(settingsButton, this::handleSettingsButton);
+        enableButton(licenseButton, this::handleOpenLicense);
 
         updateMarketPrices(0.0, 0.0);
         updatCurrency(settingService.getSettings().getEntity().getCurrency());
@@ -86,5 +91,13 @@ public class MenuView extends FXMLView {
 
     protected void handleSettingsButton(ActionEvent actionEvent) {
         stageManager.show(ContentViewType.SETTINGS, stageManager.getView().contentPane);
+    }
+
+    protected void handleOpenLicense(ActionEvent actionEvent) {
+        try {
+            Desktop.getDesktop().browse(new URI("https://github.com/szczepix1983/MyInvest/blob/master/LICENSE"));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

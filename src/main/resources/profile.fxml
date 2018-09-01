@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #2D3447;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.szczepix.myinvest.views.content.ProfileView">
+   <children>
+      <TextField fx:id="totalText" alignment="CENTER" editable="false" layoutX="66.0" layoutY="23.0" mouseTransparent="true" prefHeight="17.0" prefWidth="35.0" style="-fx-background-color: #2196f3; -fx-text-fill: #ffffff;" text="0" />
+      <Text fill="#2196f3" layoutX="236.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Profile:" />
+      <Separator layoutX="226.0" layoutY="57.0" opacity="0.5" prefHeight="2.0" prefWidth="150.0" style="-fx-background-color: #a0a2ab#a0a2ab;" />
+      <Separator layoutX="14.0" layoutY="57.0" opacity="0.5" prefHeight="2.0" prefWidth="150.0" style="-fx-background-color: #a0a2ab#a0a2ab;" />
+      <Text fill="#2196f3" layoutX="17.0" layoutY="42.0" mouseTransparent="true" strokeType="OUTSIDE" strokeWidth="0.0" text="Total:" />
+      <Text fill="#a0a2ab" layoutX="9.0" layoutY="82.0" mouseTransparent="true" strokeType="OUTSIDE" strokeWidth="0.0" text="Provide some information about yourself to create the profile." textAlignment="CENTER" wrappingWidth="161.0" />
+      <TextField fx:id="firstNameText" layoutX="311.0" layoutY="79.0" prefHeight="27.0" prefWidth="256.0" promptText="your name" style="-fx-background-color: #2196f3; -fx-text-fill: #ffffff;" />
+      <Text fill="#2196f3" layoutX="236.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First name:" />
+      <Text fill="#a0a2ab" layoutX="218.0" layoutY="265.0" strokeType="OUTSIDE" strokeWidth="0.0" text="To protect your account please define unique password." textAlignment="CENTER" wrappingWidth="271.0" />
+      <Separator layoutX="228.0" layoutY="374.0" opacity="0.5" prefHeight="3.0" prefWidth="347.0" style="-fx-background-color: #a0a2ab#a0a2ab;" />
+      <Text fill="#2196f3" layoutX="236.0" layoutY="129.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Last name:" />
+      <TextField fx:id="lastNameText" layoutX="311.0" layoutY="111.0" prefHeight="27.0" prefWidth="256.0" promptText="your surname" style="-fx-background-color: #2196f3; -fx-text-fill: #ffffff;" />
+      <TextField fx:id="usernameText" layoutX="311.0" layoutY="143.0" prefHeight="27.0" prefWidth="256.0" promptText="your nickname" style="-fx-background-color: #2196f3; -fx-text-fill: #ffffff;" />
+      <Text fill="#2196f3" layoutX="236.0" layoutY="161.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username:" />
+      <Text fill="#2196f3" layoutX="236.0" layoutY="315.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password:" />
+      <Text fill="#2196f3" layoutX="236.0" layoutY="339.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Repeat password:" wrappingWidth="63.58447265625" />
+      <Text fill="#2196f3" layoutX="236.0" layoutY="193.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email:" />
+      <TextField fx:id="emailText" layoutX="311.0" layoutY="175.0" prefHeight="27.0" prefWidth="256.0" promptText="your email" style="-fx-background-color: #2196f3; -fx-text-fill: #ffffff;" />
+      <TextField fx:id="phoneText" layoutX="311.0" layoutY="206.0" prefHeight="27.0" prefWidth="256.0" promptText="your phone number" style="-fx-background-color: #2196f3; -fx-text-fill: #ffffff;" />
+      <Text fill="#2196f3" layoutX="236.0" layoutY="224.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Phone:" />
+      <PasswordField fx:id="passwordText" layoutX="311.0" layoutY="299.0" prefHeight="27.0" prefWidth="256.0" promptText="**********" style="-fx-background-color: #2196f3; -fx-text-fill: #ffffff;" />
+      <PasswordField fx:id="repeatPasswordText" layoutX="311.0" layoutY="330.0" prefHeight="27.0" prefWidth="256.0" promptText="**********" style="-fx-background-color: #2196f3; -fx-text-fill: #ffffff;" />
+      <Text fill="#a0a2ab" layoutX="311.0" layoutY="449.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Click save profile to provde changes to your account" textAlignment="CENTER" wrappingWidth="187.7001953125" />
+      <Button fx:id="saveButton" alignment="CENTER" layoutX="328.0" layoutY="393.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="150.0" style="-fx-background-color: #2196f3;" text="Save profile" textFill="#fcf9f9" />
+   </children>
+</AnchorPane>

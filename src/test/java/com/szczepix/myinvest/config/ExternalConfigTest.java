@@ -22,7 +22,7 @@ public class ExternalConfigTest {
     @Test
     public void getCurrencies() {
         assertThat(config.getCurrencies()).isNotNull();
-        assertThat(config.getCurrencies().size()).isEqualTo(1);
+        assertThat(config.getCurrencies().size()).isEqualTo(157);
     }
 
     @Configuration

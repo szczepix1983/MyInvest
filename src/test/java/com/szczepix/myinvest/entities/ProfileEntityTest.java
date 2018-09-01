@@ -14,7 +14,7 @@ public class ProfileEntityTest {
 
     @Before
     public void onInit() {
-        profileEntity = new ProfileEntityMock();
+        profileEntity = new ProfileEntityMock(1);
     }
 
     @Test
@@ -78,8 +78,8 @@ public class ProfileEntityTest {
 
     public static class ProfileEntityMock extends ProfileEntity {
 
-        public ProfileEntityMock() {
-            setId(1);
+        public ProfileEntityMock(final int id) {
+            setId(id);
             setMobile("mobile");
             setFirstName("firstName");
             setLastName("lastName");

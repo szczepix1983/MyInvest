@@ -2,10 +2,11 @@ package com.szczepix.myinvest.services.profileService;
 
 import com.szczepix.myinvest.dao.IProfileRepository;
 import com.szczepix.myinvest.entities.ProfileEntity;
+import com.szczepix.myinvest.entities.ProfileEntityTest;
+import com.szczepix.myinvest.models.ProfileModel;
 import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,6 +15,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Matchers.eq;
@@ -51,6 +53,35 @@ public class ProfileServiceTest {
     }
 
     @Test
+    public void getProfilesWhenProfilesCreated() {
+        when(cache.getCache()).thenReturn(createProfilesMock(3));
+
+        assertThat(profileService.getProfiles()).isNotNull();
+        assertThat(profileService.getProfiles().size()).isEqualTo(3);
+    }
+
+    @Test
+    public void getProfile() {
+        assertThat(profileService.getProfile()).isNotNull();
+        assertThat(profileService.getProfile().getEntity()).isNotNull();
+    }
+
+    @Test
+    public void getProfileWhenCreated() {
+        List<ProfileModel> profiles = createProfilesMock(1);
+        when(cache.getCache()).thenReturn(profiles);
+        assertThat(profileService.getProfile()).isNotNull();
+        assertThat(profileService.getProfile()).isEqualTo(profiles.get(0));
+    }
+
+    @Test
+    public void save() {
+        ProfileModel model = profileService.getProfile();
+        profileService.save(model);
+        verify(repository, times(1)).save(eq(model.getEntity()));
+    }
+
+    @Test
     public void getFindProfileByUserNameAndPasswordWhenWrong() {
         assertThat(profileService.findProfileByUserNameAndPassword("szczepix", "password")).isNotNull();
         assertThat(profileService.findProfileByUserNameAndPassword("szczepix", "password").getEntity()).isNull();
@@ -67,13 +98,22 @@ public class ProfileServiceTest {
         assertThat(profileService.findProfileByUserNameAndPassword("szczepix", "password").getEntity()).isEqualTo(entity);
     }
 
+    private List<ProfileModel> createProfilesMock(int count) {
+        List<ProfileModel> list = new ArrayList<>();
+        while (count > 0) {
+            list.add(new ProfileModel(new ProfileEntityTest.ProfileEntityMock(count)));
+            count--;
+        }
+        return list;
+    }
+
     @Configuration
     static class ProfileServiceTestConfiguration {
 
         @Bean
         public IProfileRepository repository() {
             IProfileRepository repository = mock(IProfileRepository.class);
-            Mockito.when(repository.findAll()).thenReturn(new ArrayList<>());
+            when(repository.findAll()).thenReturn(new ArrayList<>());
             return repository;
         }
 
