@@ -2,7 +2,6 @@ package com.szczepix.myinvest.managers;
 
 import com.szczepix.myinvest.enums.AppViewType;
 import com.szczepix.myinvest.enums.ContentViewType;
-import com.szczepix.myinvest.enums.PopupViewType;
 import com.szczepix.myinvest.views.MainView;
 import javafx.collections.ObservableList;
 import javafx.embed.swing.JFXPanel;
@@ -64,15 +63,6 @@ public class StageManagerTest {
             stageManager.show(ContentViewType.CREATE_INVESTMENT, stageManager.getView().contentPane);
             verify(stageManager.getView().contentPane.getChildren(), times(1)).clear();
             verify(stageManager.getView().contentPane.getChildren(), times(1)).add(any());
-        } catch (Exception e) {
-            fail("Unexpected exception thrown by StageManager.show");
-        }
-    }
-
-    @Test
-    public void showPopupViewType() throws Exception {
-        try {
-            stageManager.show(PopupViewType.MOCK);
         } catch (Exception e) {
             fail("Unexpected exception thrown by StageManager.show");
         }

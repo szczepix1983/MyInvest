@@ -5,6 +5,7 @@ import com.szczepix.myinvest.config.IInternalConfig;
 import com.szczepix.myinvest.enums.ResourceApiType;
 import com.szczepix.myinvest.services.settingService.ISettingService;
 import com.szczepix.myinvest.views.FXMLView;
+import com.szczepix.myinvest.views.popups.InfoPopup;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -111,14 +112,18 @@ public class SettingsView extends FXMLView {
     }
 
     private void onSaveButton(ActionEvent event) {
+        String popupInfoMessage;
         try {
             settingService.getSettings().getEntity().setResourceSyncApi(resourceApiCombobox.getValue().getUrl());
             settingService.getSettings().getEntity().setCurrency(currencyCombobox.getValue());
             settingService.getSettings().getEntity().setResourceSyncInterval(Integer.parseInt(resourceIntervalText.getText()));
             settingService.save();
+
+            popupInfoMessage = "The settings has been successfully updated.";
         } catch (Exception e) {
-            System.out.println("Saving Error: " + e);
+            popupInfoMessage = "Unexpected Error. \n \n " + e;
         }
+        new InfoPopup(stageManager, popupInfoMessage);
     }
 
     private ObservableList<String> getCurrencies() {

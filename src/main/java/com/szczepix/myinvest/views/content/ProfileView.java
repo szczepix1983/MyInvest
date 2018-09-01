@@ -3,6 +3,7 @@ package com.szczepix.myinvest.views.content;
 import com.szczepix.myinvest.models.ProfileModel;
 import com.szczepix.myinvest.services.profileService.IProfileService;
 import com.szczepix.myinvest.views.FXMLView;
+import com.szczepix.myinvest.views.popups.InfoPopup;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -62,7 +63,9 @@ public class ProfileView extends FXMLView {
     }
 
     private void onSaveButton(ActionEvent event) {
+        String popupInfoMessage;
         try {
+            popupInfoMessage = "Your profile password does not match. \n \n Password fields must be the same, provide correct password and try again.";
             if (validateForm()) {
                 final ProfileModel profileModel = profileService.getProfile();
                 profileModel.getEntity().setUserName(usernameText.getText());
@@ -72,14 +75,16 @@ public class ProfileView extends FXMLView {
                 profileModel.getEntity().setMobile(phoneText.getText());
                 profileModel.getEntity().setPassword(passwordText.getText());
                 profileService.save(profileModel);
+                popupInfoMessage = "Your profile has been successfully updated.";
             }
         } catch (Exception e) {
-            System.out.println("Saving Error: " + e);
+            popupInfoMessage = "Unexpected Error. \n \n " + e;
         }
+        new InfoPopup(stageManager, popupInfoMessage);
     }
 
     private boolean validateForm() {
-        return passwordText.getText().equals(repeatPasswordText.getText());
+        return !passwordText.getText().isEmpty() && passwordText.getText().equals(repeatPasswordText.getText());
     }
 
     private String getTotalProfiles() {

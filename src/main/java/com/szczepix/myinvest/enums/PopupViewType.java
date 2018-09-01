@@ -6,6 +6,7 @@ import lombok.Getter;
 public enum PopupViewType {
 
     EXCEPTION("Exception", "exception.fxml"),
+    INFO("Information", "popups/infoPopup.fxml"),
     MOCK("Test", "mock.fxml");
 
     String title;

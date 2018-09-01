@@ -6,6 +6,7 @@ import com.szczepix.myinvest.enums.WalletType;
 import com.szczepix.myinvest.models.WalletModel;
 import com.szczepix.myinvest.services.walletService.IWalletService;
 import com.szczepix.myinvest.views.FXMLView;
+import com.szczepix.myinvest.views.popups.InfoPopup;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -113,6 +114,7 @@ public class CreateSaveView extends FXMLView {
     }
 
     private void onCreateButton(ActionEvent event) {
+        String popupInfoMessage;
         try {
             WalletModel model = walletService.create();
             model.getEntity().setValue(Double.parseDouble(valueText.getText()));
@@ -122,9 +124,11 @@ public class CreateSaveView extends FXMLView {
             model.getEntity().setPeriodType(periodCombobox.getValue().getName());
             model.getEntity().setTargetType(targetCombobox.getValue().getName());
             walletService.save(model);
+            popupInfoMessage = "New wallet has been created successfully.";
         } catch (Exception e) {
-            System.out.println("aaaaaaaaaa " + e);
+            popupInfoMessage = "Unexpected Error. \n \n " + e;
         }
+        new InfoPopup(stageManager, popupInfoMessage);
     }
 
     private ObservableList<PeriodType> getPeriodTypes() {

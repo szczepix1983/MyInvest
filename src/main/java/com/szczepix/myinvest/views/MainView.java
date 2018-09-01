@@ -3,6 +3,7 @@ package com.szczepix.myinvest.views;
 import com.szczepix.myinvest.enums.ContentViewType;
 import javafx.fxml.FXML;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
 import org.springframework.stereotype.Component;
 
 import java.net.URL;
@@ -15,6 +16,8 @@ public class MainView extends FXMLView {
     public AnchorPane menuPane;
     @FXML
     public AnchorPane contentPane;
+    @FXML
+    public StackPane popupPane;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

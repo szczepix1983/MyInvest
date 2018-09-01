@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="400.0" style="-fx-background-color: #2D3447;" type="AnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Separator layoutX="18.0" layoutY="49.0" opacity="0.5" prefHeight="3.0" prefWidth="365.0" style="-fx-background-color: #a0a2ab#a0a2ab;" />
+      <Button fx:id="closeButton" alignment="CENTER" layoutX="166.0" layoutY="157.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="71.0" style="-fx-background-color: #2196f3;" text="Close" textFill="#fcf9f9" />
+      <Label fx:id="titleLabel" contentDisplay="CENTER" layoutX="20.0" layoutY="17.0" mouseTransparent="true" text="Dashboard" textFill="#fcfcfc">
+         <font>
+            <Font name="Apple Symbols" size="24.0" />
+         </font>
+      </Label>
+      <Text fx:id="messageText" fill="#a0a2ab" layoutX="18.0" layoutY="78.0" strokeType="OUTSIDE" strokeWidth="0.0" text="By selection of wallet type you can define a way to save your money.By selection of wallet type you can define a way to save your money.By selection of wallet type you can define a way to save your money.By selection of wallet type you can define a way to save your money." textAlignment="CENTER" wrappingWidth="365.0" />
+   </children>
+</fx:root>

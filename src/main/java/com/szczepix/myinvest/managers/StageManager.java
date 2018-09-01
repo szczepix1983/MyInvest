@@ -2,13 +2,11 @@ package com.szczepix.myinvest.managers;
 
 import com.szczepix.myinvest.enums.AppViewType;
 import com.szczepix.myinvest.enums.ContentViewType;
-import com.szczepix.myinvest.enums.PopupViewType;
 import com.szczepix.myinvest.utils.FxmlUtils;
 import com.szczepix.myinvest.views.MainView;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
-import javafx.stage.Popup;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import lombok.Getter;
@@ -56,12 +54,6 @@ public class StageManager implements IStageManager {
     public void show(final ContentViewType contentViewType, final Pane pane) {
         pane.getChildren().clear();
         pane.getChildren().add(loadViewNodeHierarchy(contentViewType.getPath()));
-    }
-
-    @Override
-    public void show(final PopupViewType popupViewType) {
-        Popup popup = new Popup();
-        popup.getContent().add(loadViewNodeHierarchy(popupViewType.getPath()));
     }
 
     private Scene prepareScene(final Parent rootnode) {

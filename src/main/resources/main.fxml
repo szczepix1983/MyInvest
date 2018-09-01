@@ -1,19 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.szczepix.myinvest.views.MainView">
-   <center>
-      <AnchorPane fx:id="contentPane" layoutX="200.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" nodeOrientation="LEFT_TO_RIGHT" style="-fx-background-color: #2D3447;" BorderPane.alignment="TOP_LEFT" />
-   </center>
-   <bottom>
-      <AnchorPane fx:id="bottomPane" prefHeight="10.0" prefWidth="200.0" style="-fx-background-color: #2D3447;" BorderPane.alignment="CENTER" />
-   </bottom>
-   <top>
-      <AnchorPane fx:id="topPane" prefHeight="10.0" prefWidth="200.0" style="-fx-background-color: #2D3447;" BorderPane.alignment="CENTER" />
-   </top>
-   <left>
-      <AnchorPane fx:id="menuPane" prefHeight="400.0" prefWidth="200.0" style="-fx-background-color: #2D3447;" BorderPane.alignment="CENTER" />
-   </left>
-</BorderPane>
+
+<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.szczepix.myinvest.views.MainView">
+   <children>
+      <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0">
+         <center>
+            <AnchorPane fx:id="contentPane" layoutX="200.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" nodeOrientation="LEFT_TO_RIGHT" style="-fx-background-color: #2D3447;" BorderPane.alignment="TOP_LEFT" />
+         </center>
+         <bottom>
+            <AnchorPane fx:id="bottomPane" prefHeight="10.0" prefWidth="200.0" style="-fx-background-color: #2D3447;" BorderPane.alignment="CENTER" />
+         </bottom>
+         <top>
+            <AnchorPane fx:id="topPane" prefHeight="10.0" prefWidth="200.0" style="-fx-background-color: #2D3447;" BorderPane.alignment="CENTER" />
+         </top>
+         <left>
+            <AnchorPane fx:id="menuPane" prefHeight="400.0" prefWidth="200.0" style="-fx-background-color: #2D3447;" BorderPane.alignment="CENTER" />
+         </left>
+      </BorderPane>
+      <StackPane fx:id="popupPane" mouseTransparent="true" prefHeight="600.0" prefWidth="1200.0" />
+   </children>
+</AnchorPane>
