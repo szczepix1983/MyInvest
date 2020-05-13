@@ -29,6 +29,8 @@ public class MenuView extends FXMLView {
     @FXML
     public Button walletsButton;
     @FXML
+    public Button analyzeButton;
+    @FXML
     public Button settingsButton;
     @FXML
     public Button licenseButton;
@@ -51,6 +53,7 @@ public class MenuView extends FXMLView {
     public void initialize(URL location, ResourceBundle resources) {
         enableButton(profileButton, this::handleProfileButton);
         enableButton(walletsButton, this::handleWalletsButton);
+        enableButton(analyzeButton, this::handleAnalyzeButton);
         enableButton(settingsButton, this::handleSettingsButton);
         enableButton(licenseButton, this::handleOpenLicense);
 
@@ -87,6 +90,10 @@ public class MenuView extends FXMLView {
 
     protected void handleWalletsButton(ActionEvent actionEvent) {
         stageManager.show(ContentViewType.WALLETS, stageManager.getView().contentPane);
+    }
+
+    protected void handleAnalyzeButton(ActionEvent actionEvent) {
+        stageManager.show(ContentViewType.ANALYZE, stageManager.getView().contentPane);
     }
 
     protected void handleSettingsButton(ActionEvent actionEvent) {

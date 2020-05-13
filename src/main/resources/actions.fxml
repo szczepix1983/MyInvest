@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #2D3447;" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.szczepix.myinvest.views.content.ActionsView">
+   <children>
+      <Separator layoutX="14.0" layoutY="98.0" opacity="0.5" prefHeight="3.0" prefWidth="79.0" style="-fx-background-color: #a0a2ab#a0a2ab;" />
+      <Separator layoutX="14.0" layoutY="57.0" opacity="0.5" prefHeight="3.0" prefWidth="326.0" style="-fx-background-color: #a0a2ab#a0a2ab;" />
+      <Text fill="#2196f3" layoutX="16.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Analiza akcji" />
+      <TabPane layoutX="14.0" layoutY="113.0" prefHeight="400.0" prefWidth="600.0" style="-fx-border-image-width: #2196f3;" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="P/E">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Text fill="#2196f3" layoutX="242.0" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Zysk z 12 miesięcy" />
+                        <TextField fx:id="companyIncome" alignment="CENTER" layoutX="393.0" layoutY="107.0" prefHeight="27.0" prefWidth="150.0" promptText="10.00" style="-fx-background-color: #2196f3; -fx-text-fill: #ffffff;" />
+                        <Text fill="#2196f3" layoutX="57.0" layoutY="84.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ile razy akcja jest droższa od zysku wypracowanego na przestrzeni 12 miesięcy" />
+                        <Text fill="#2196f3" layoutX="63.0" layoutY="166.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Wartość rynkowa spółki (cena akcji * ilość akcji)" />
+                        <TextField fx:id="companyPrice" alignment="CENTER" layoutX="394.0" layoutY="148.0" prefHeight="27.0" prefWidth="150.0" promptText="10.00" style="-fx-background-color: #2196f3; -fx-text-fill: #ffffff;" />
+                        <TextField fx:id="priceEarningsResult" alignment="CENTER" editable="false" layoutX="393.0" layoutY="209.0" prefHeight="27.0" prefWidth="150.0" style="-fx-background-color: #2196f3; -fx-text-fill: #ffffff;" />
+                        <Separator layoutX="218.0" layoutY="190.0" opacity="0.5" prefHeight="3.0" prefWidth="326.0" style="-fx-background-color: #a0a2ab#a0a2ab;" />
+                        <Text fill="#2196f3" layoutX="180.0" layoutY="227.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Współczynnik cena do zysku" />
+                        <Text fill="#2196f3" layoutX="317.0" layoutY="267.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ocena" />
+                        <TextField fx:id="scoreResult" alignment="CENTER" editable="false" layoutX="394.0" layoutY="249.0" prefHeight="27.0" prefWidth="150.0" style="-fx-background-color: #2196f3; -fx-text-fill: #ffffff;" />
+                        <Text fill="#2196f3" layoutX="137.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Wskaźnik cena/zysk inaczej Price/Earnings lub P/E" />
+                     </children></AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="CAPE">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Text fill="#2196f3" layoutX="123.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CAPE, inaczej wskaźnik cena/zysk Shillera lub P/E Shillera" />
+                        <Text fill="#2196f3" layoutX="57.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ile razy akcja jest droższa od zysku wypracowanego na przestrzeni 12 miesięcy" />
+                     </children></AnchorPane>
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>
