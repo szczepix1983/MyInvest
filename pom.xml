@@ -38,7 +38,7 @@
         <lombook.version>1.18.0</lombook.version>
         <jacoco.version>0.8.1</jacoco.version>
 		<sqlite.version>3.16.1</sqlite.version>
-		<apache.httpcomponents.version>4.5.5</apache.httpcomponents.version>
+		<apache.httpcomponents.version>4.5.13</apache.httpcomponents.version>
 		<codehaus.jackson.version>1.9.0</codehaus.jackson.version>
 	</properties>
 
